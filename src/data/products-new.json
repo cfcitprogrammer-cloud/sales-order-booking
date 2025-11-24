@@ -1,0 +1,194 @@
+[
+  {
+    "id": "",
+    "item": "Hobe Special Bihon 454g",
+    "packing": "24",
+    "packsize": "454g",
+    "packPrize": 33.62,
+    "casePrice": 806.88
+  },
+  {
+    "id": "",
+    "item": "Hobe Special Bihon 454g",
+    "packing": "30",
+    "packsize": "454g",
+    "packPrize": 33.62,
+    "casePrice": 1008.6
+  },
+  {
+    "id": "",
+    "item": "Hobe Special Bihon 500g",
+    "packing": "30",
+    "packsize": "500g",
+    "packPrize": 34.3,
+    "casePrice": 1029.0
+  },
+  {
+    "id": "",
+    "item": "Hobe Special Bihon 227g",
+    "packing": "48",
+    "packsize": "227g",
+    "packPrize": 16.31,
+    "casePrice": 782.88
+  },
+  {
+    "id": "",
+    "item": "Hobe Special Bihon 907g",
+    "packing": "12",
+    "packsize": "907g",
+    "packPrize": 67.25,
+    "casePrice": 807
+  },
+  {
+    "id": "1YcymhrTl7nqkV8cl_OU_3qStyijBLP9l",
+    "item": "Hobe Canton 227g",
+    "packing": "12",
+    "packsize": "227g",
+    "packPrize": 35,
+    "casePrice": 420
+  },
+  {
+    "id": "1nvK0zfskc6GAzzYcg3EI95UpL62WOu81",
+    "item": "Hobe Canton 454g",
+    "packing": "30",
+    "packsize": "454g",
+    "packPrize": 68,
+    "casePrice": 2040
+  },
+  {
+    "id": "1swEIrs5H3lzZYlisvXyn6IekcsnAOOgx",
+    "item": "Hobe Palabok 454g",
+    "packing": "24",
+    "packsize": "454g",
+    "packPrize": 33.95,
+    "casePrice": 814.8
+  },
+  {
+    "id": "",
+    "item": "Hobe Sotanghon",
+    "packing": "20",
+    "packsize": "454g",
+    "packPrize": 130,
+    "casePrice": 2600
+  },
+  {
+    "id": "14cc2HHRkB0_gvgEPjn6t4KqJzeenTMrJ",
+    "item": "Hobe Egg Noodles 200g",
+    "packing": "50",
+    "packsize": "200g",
+    "packPrize": 45,
+    "casePrice": 2250
+  },
+  {
+    "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
+    "item": "Hobe Egg Noodles 400g",
+    "packing": "30",
+    "packsize": "400g",
+    "packPrize": 75,
+    "casePrice": 2250
+  },
+  {
+    "id": "1S5gsDhx5GONCEwYddEmq74q6nLLsGc2U",
+    "item": "Golden Me Extra Special 454g",
+    "packing": "30",
+    "packsize": "454g",
+    "packPrize": 33.62,
+    "casePrice": 1008.6
+  },
+  {
+    "id": "156G1YmBJWTUdlhFBfQMaZqj7IJx4B_TA",
+    "item": "Golden Me Extra Special 227g",
+    "packing": "48",
+    "packsize": "227g",
+    "packPrize": 16.31,
+    "casePrice": 782.88
+  },
+  {
+    "id": "",
+    "item": "Mega-Q Special Bihon",
+    "packing": "30",
+    "packsize": "400g",
+    "packPrize": 28.95,
+    "casePrice": 868.5
+  },
+  {
+    "id": "",
+    "item": "Chickboy Sweet Corn 25g",
+    "packing": "50",
+    "packsize": "25g",
+    "packPrize": 5.6,
+    "casePrice": 280
+  },
+  {
+    "id": "",
+    "item": "Chickboy Cheese 25g",
+    "packing": "50",
+    "packsize": "25g",
+    "packPrize": 5.6,
+    "casePrice": 280
+  },
+  {
+    "id": "",
+    "item": "Chickboy Texas Smoked BBQ 30g",
+    "packing": "50",
+    "packsize": "30g",
+    "packPrize": 5.6,
+    "casePrice": 280
+  },
+  {
+    "id": "",
+    "item": "Chickboy California Crunch 30g",
+    "packing": "50",
+    "packsize": "30g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  },
+  {
+    "id": "15-DKckwW0-0BjoDYG5fuxZxMEt9uPpKh",
+    "item": "Chickboy Sweet Corn 100g",
+    "packing": "40",
+    "packsize": "100g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  },
+  {
+    "id": "",
+    "item": "Chickboy Cheese 100g",
+    "packing": "40",
+    "packsize": "100g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  },
+  {
+    "id": "",
+    "item": "Chickboy Green Peas 100g",
+    "packing": "40",
+    "packsize": "100g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  },
+  {
+    "id": "",
+    "item": "Chickboy Spaghetti 100g",
+    "packing": "40",
+    "packsize": "100g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  },
+  {
+    "id": "",
+    "item": "Chickboy Texas Smoked BBQ 100g",
+    "packing": "40",
+    "packsize": "100g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  },
+  {
+    "id": "",
+    "item": "Chickboy California Crunch Onion and Garlic 100g",
+    "packing": "40",
+    "packsize": "100g",
+    "packPrize": 17.15,
+    "casePrice": 686
+  }
+]
