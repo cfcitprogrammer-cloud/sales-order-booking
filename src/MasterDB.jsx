@@ -55,7 +55,7 @@ export default function MasterDB() {
 
               const grandTotal = products.reduce((acc, p) => {
                 if (p.option === "pack") return acc + p.qty * p.packPrice;
-                else if (p.option === "case") return acc + p.casePrice;
+                else if (p.option === "case") return acc + p.qty * p.casePrice;
                 return acc;
               }, 0);
 
@@ -139,7 +139,7 @@ export default function MasterDB() {
                           const total =
                             p.option === "pack"
                               ? p.qty * p.packPrice
-                              : p.casePrice;
+                              : p.qty * p.casePrice;
 
                           return (
                             <div

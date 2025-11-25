@@ -35,7 +35,7 @@ export default function ChooseProduct() {
 
   const handleAdd = (product) => {
     const selectedOption = option[product.uid] || "pack";
-    const quantity = selectedOption === "pack" ? qty[product.uid] || 1 : 1;
+    const quantity = qty[product.uid];
 
     addToCart({
       id: product.uid,
@@ -114,20 +114,18 @@ export default function ChooseProduct() {
                     </select>
                   </div>
 
-                  {selectedOption === "pack" && (
-                    <div className="flex items-center gap-2">
-                      <span>QTY:</span>
-                      <input
-                        type="number"
-                        min="1"
-                        className="input input-sm w-20"
-                        value={qty[product.uid] || 1}
-                        onChange={(e) =>
-                          handleQtyChange(product.uid, e.target.value)
-                        }
-                      />
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2">
+                    <span>QTY:</span>
+                    <input
+                      type="number"
+                      min="1"
+                      className="input input-sm w-20"
+                      value={qty[product.uid] || 1}
+                      onChange={(e) =>
+                        handleQtyChange(product.uid, e.target.value)
+                      }
+                    />
+                  </div>
 
                   <button
                     className="btn btn-primary btn-sm mt-2"
