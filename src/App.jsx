@@ -9,7 +9,7 @@ import OrderDetail from "./OrderDetail";
 
 function App() {
   return (
-    <BrowserRouter basename="/sales-order-booking">
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/customer-info" element={<CustomerInfo />} />
