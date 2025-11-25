@@ -12,7 +12,7 @@ export default function CustomerInfo() {
     customerInfo.customerName &&
     customerInfo.contactPerson &&
     customerInfo.deliveryDate &&
-    customerInfo.receivingDate;
+    customerInfo.receivingTime;
   // customerInfo.remarks;
   // customerInfo.attachment; // NEW
 
