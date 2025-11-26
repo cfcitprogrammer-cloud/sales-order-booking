@@ -18,5 +18,5 @@ export default defineConfig({
       ],
     }),
   ],
-  base: "/sales-order-booking",
+  base: "/sales-order-booking-dev",
 });

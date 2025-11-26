@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://cfcitprogrammer-cloud.github.io/sales-order-booking/",
+  "homepage": "https://cfcitprogrammer-cloud.github.io/sales-order-booking-dev/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
