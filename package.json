@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "upd": "gh-pages --repo https://github.com/cfcitprogrammer-cloud/sales-order-booking-dev.git"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0",
