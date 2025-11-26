@@ -86,7 +86,7 @@ export default function Checkout() {
           customer_name: info.customerName,
           contact_person: info.contactPerson,
           delivery_date: info.deliveryDate,
-          rreceiving_time: info.receivingTime,
+          receiving_time: info.receivingTime,
           remarks: info.remarks,
           attachment: imageUrl,
           orders: JSON.stringify(cart),
@@ -111,7 +111,7 @@ export default function Checkout() {
     clearCustomer();
 
     // Redirect
-    navigate("/done");
+    navigate("/products/done");
   }
 
   return (
