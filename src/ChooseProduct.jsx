@@ -120,7 +120,7 @@ export default function ChooseProduct() {
                       type="number"
                       min="1"
                       className="input input-sm w-20"
-                      value={qty[product.uid] || 1}
+                      value={qty[product.uid]}
                       onChange={(e) =>
                         handleQtyChange(product.uid, e.target.value)
                       }
