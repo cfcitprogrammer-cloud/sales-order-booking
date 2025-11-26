@@ -107,6 +107,18 @@ export default function OrderDetails() {
               <strong>Delivery Date:</strong> {order.delivery_date}
             </p>
             <p>
+              <strong>Receiving Time:</strong>{" "}
+              {order.receiving_time
+                ? new Date(
+                    `2025-12-05T${order.receiving_time}Z`
+                  ).toLocaleString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })
+                : "N/A"}
+            </p>
+            <p>
               <strong>Remarks:</strong> {order.remarks}
             </p>
           </div>

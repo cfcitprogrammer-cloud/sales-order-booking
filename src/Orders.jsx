@@ -108,13 +108,24 @@ export default function Orders() {
                         <td>{order.store_name}</td>
                         <td>{order.location}</td>
                         <td>{order.customer_name}</td>
-                        <td>{order.contact_person}</td>{" "}
+                        <td>{order.contact_person}</td>
                         {/* Display Contact Person */}
                         <td>
                           {new Date(order.delivery_date).toLocaleDateString()}
-                        </td>{" "}
+                        </td>
                         {/* Display Delivery Date */}
-                        <td>{order.receiving_time}</td>
+                        <td>
+                          {order.receiving_time
+                            ? new Date(order.receiving_time).toLocaleString(
+                                "en-US",
+                                {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                  hour12: true,
+                                }
+                              )
+                            : "N/A"}
+                        </td>
                         <td>{new Date(order.created_at).toLocaleString()}</td>
                         <td>
                           <span
@@ -215,7 +226,16 @@ export default function Orders() {
                     </p>
                     <p>
                       <strong>Receiving Time:</strong>{" "}
-                      {order.receiving_time || "None"}
+                      {order.receiving_time
+                        ? new Date(order.receiving_time).toLocaleString(
+                            "en-US",
+                            {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                            }
+                          )
+                        : "N/A"}
                     </p>
                     <p>
                       <strong>Remarks:</strong>
@@ -263,7 +283,7 @@ export default function Orders() {
 
                     {/* Display Grand Total */}
                     <div className="mt-4 text-right font-semibold">
-                      <p>Total: ${grandTotal.toFixed(2)}</p>
+                      <p>Total: ₱{grandTotal.toFixed(2)}</p>
                     </div>
 
                     <div className="mt-2 text-right">
