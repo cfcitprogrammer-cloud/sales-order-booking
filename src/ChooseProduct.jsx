@@ -119,6 +119,7 @@ export default function ChooseProduct() {
                     <input
                       type="number"
                       min="1"
+                      defaultValue={"1"}
                       className="input input-sm w-20"
                       value={qty[product.uid]}
                       onChange={(e) =>
