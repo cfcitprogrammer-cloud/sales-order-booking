@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://cfcitprogrammer-cloud.github.io/sales-order-booking-dev/",
+  "homepage": "https://cfcitprogrammer-cloud.github.io/sales-order-booking/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "upd": "gh-pages --repo https://github.com/cfcitprogrammer-cloud/sales-order-booking-dev.git"
+    "upd": "gh-pages --repo https://github.com/cfcitprogrammer-cloud/sales-order-booking.git"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.84.0",

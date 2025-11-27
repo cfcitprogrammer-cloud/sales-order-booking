@@ -125,13 +125,13 @@ export default function OrderDetails() {
               <strong>Delivery Date:</strong> {order.delivery_date}
             </p>
             <p>
-              <strong>Receiving Time:</strong> {order.receiving_time}
+              <strong>Receiving Time:</strong>{" "}
               {convertTo12HourFormat(order.receiving_time)}
             </p>
             <p>
               <strong>Remarks:</strong> {order.remarks}
             </p>
-            <img src={order.attachment} alt="img" />
+            {order.attachment && <img src={order.attachment} alt="img" />}
           </div>
         </div>
 

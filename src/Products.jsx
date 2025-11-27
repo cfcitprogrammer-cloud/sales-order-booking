@@ -191,7 +191,7 @@ export default function Products() {
                 <ul className="space-y-3">
                   {cart.map((item) => (
                     <li
-                      key={item.id + item.option}
+                      key={item.cartId}
                       className="flex justify-between items-center border p-2 rounded"
                     >
                       <div>
@@ -203,7 +203,7 @@ export default function Products() {
 
                       <button
                         className="btn btn-error btn-sm"
-                        onClick={() => removeFromCart(item.id, item.option)}
+                        onClick={() => removeFromCart(item.cartId)}
                       >
                         Remove
                       </button>

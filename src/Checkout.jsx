@@ -213,9 +213,9 @@ export default function Checkout() {
                     className="flex justify-between border-b pb-2"
                   >
                     <div>
-                      {item.item} ({item.option})
-                    </div>
-                    <div className="flex items-center gap-2">
+                      <p>
+                        {item.item} ({item.option})
+                      </p>
                       {item.qty} × ₱
                       <input
                         className="w-20"
@@ -228,7 +228,9 @@ export default function Checkout() {
                         onChange={(e) =>
                           handlePriceChange(index, e.target.value)
                         }
-                      />{" "}
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
                       = ₱{totalPrice.toFixed(2)}
                     </div>
                   </div>

@@ -222,6 +222,9 @@ export default function Orders() {
                       <strong>Remarks: </strong>
                       {order.remarks || "None"}
                     </p>
+                    {order.attachment && (
+                      <img src={order.attachment} alt="img" />
+                    )}
 
                     {/* Table of Product Items */}
                     <div className="overflow-x-auto mt-4">
