@@ -125,7 +125,7 @@ export default function Products() {
                   <div className="card-body">
                     <h2 className="card-title">{product.item}</h2>
                     <p className="text-sm text-gray-600">
-                      Bdl {product.packing} pc/s | Size: {product.packsize}
+                      Bdl {product.bdl} pc/s | Size: {product.packsize}
                     </p>
                     <p className="text-sm">Bdl Price: ₱{product.packPrize}</p>
                     <p className="text-sm">Case Price: ₱{product.casePrice}</p>
