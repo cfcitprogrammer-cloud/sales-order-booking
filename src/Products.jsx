@@ -50,7 +50,7 @@ export default function Products() {
       packPrice: product.packPrize,
       casePrice: product.casePrice,
       packSize: product.packsize,
-      packing: product.packing,
+      packing: product.bdl,
     });
 
     alert("Added to cart!");
