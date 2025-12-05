@@ -62,7 +62,7 @@ export default function Checkout() {
   // -------------------------------------------------
   const grandTotal = cart.reduce((total, item) => {
     const price =
-      item.option === "pack" ? Number(item.packPrice) : Number(item.casePrice);
+      item.option === "bdl" ? Number(item.packPrice) : Number(item.casePrice);
     return total + price * item.qty;
   }, 0);
 
@@ -75,14 +75,14 @@ export default function Checkout() {
 
     if (newPrice === "") {
       // Allow clearing the value (empty)
-      if (item.option === "pack") {
+      if (item.option === "bdl") {
         item.packPrice = null; // Set to null or leave empty
       } else {
         item.casePrice = null;
       }
     } else if (!isNaN(newPrice) && newPrice >= 0) {
       // Only update if the new price is a valid number
-      if (item.option === "pack") {
+      if (item.option === "bdl") {
         item.packPrice = newPrice;
       } else {
         item.casePrice = newPrice;
@@ -202,7 +202,7 @@ export default function Checkout() {
               {cart.map((item, index) => {
                 // Calculate the total price per item
                 const price =
-                  item.option === "pack"
+                  item.option === "bdl"
                     ? Number(item.packPrice)
                     : Number(item.casePrice);
                 const totalPrice = price * item.qty;
@@ -221,7 +221,7 @@ export default function Checkout() {
                         className="w-20"
                         type="number"
                         value={
-                          item.option === "pack"
+                          item.option === "bdl"
                             ? item.packPrice
                             : item.casePrice || ""
                         }

@@ -161,7 +161,7 @@ export default function Orders() {
                 }
 
                 const grandTotal = products.reduce((acc, p) => {
-                  if (p.option === "pack") return acc + p.qty * p.packPrice;
+                  if (p.option === "bdl") return acc + p.qty * p.packPrice;
                   else if (p.option === "case")
                     return acc + p.qty * p.casePrice;
                   return acc;
@@ -241,7 +241,7 @@ export default function Orders() {
                         <tbody>
                           {products.map((product, index) => {
                             const totalPrice =
-                              product.option === "pack"
+                              product.option === "bdl"
                                 ? product.qty * product.packPrice
                                 : product.option === "case"
                                 ? product.qty * product.casePrice
@@ -253,7 +253,7 @@ export default function Orders() {
                                 <td>{product.option}</td>
                                 <td>{product.qty}</td>
                                 <td>
-                                  {product.option === "pack"
+                                  {product.option === "bdl"
                                     ? product.packPrice
                                     : product.casePrice}
                                 </td>

@@ -39,7 +39,7 @@ export default function Products() {
   };
 
   const handleAdd = (product) => {
-    const selectedOption = option[product.uid] || "pack";
+    const selectedOption = option[product.uid] || "bdl";
     const quantity = qty[product.uid] ? qty[product.uid] : 1;
 
     addToCart({
@@ -108,7 +108,7 @@ export default function Products() {
         <div className="flex flex-wrap gap-4 justify-center">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => {
-              const selectedOption = option[product.uid] || "pack";
+              const selectedOption = option[product.uid] || "bdl";
 
               return (
                 <div
@@ -125,9 +125,9 @@ export default function Products() {
                   <div className="card-body">
                     <h2 className="card-title">{product.item}</h2>
                     <p className="text-sm text-gray-600">
-                      Pack: {product.packing} bdl | Size: {product.packsize}
+                      Bdl {product.packing} pc/s | Size: {product.packsize}
                     </p>
-                    <p className="text-sm">Pack Price: ₱{product.packPrize}</p>
+                    <p className="text-sm">Bdl Price: ₱{product.packPrize}</p>
                     <p className="text-sm">Case Price: ₱{product.casePrice}</p>
 
                     {/* Select option and quantity inputs */}
@@ -141,7 +141,7 @@ export default function Products() {
                             handleOptionChange(product.uid, e.target.value)
                           }
                         >
-                          <option value="pack">Pack</option>
+                          <option value="bdl">Bundle</option>
                           <option value="case">Case</option>
                         </select>
                       </div>
@@ -151,7 +151,7 @@ export default function Products() {
                         <input
                           type="number"
                           min="1"
-                          defaultValue={"1"}
+                          defaultValue={""}
                           className="input input-sm w-20"
                           value={qty[product.uid]}
                           onChange={(e) =>

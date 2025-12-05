@@ -50,7 +50,7 @@ export default function OrderDetails() {
 
   // Calculate grand total
   const grandTotal = products.reduce((acc, p) => {
-    if (p.option === "pack") return acc + p.qty * p.packPrice;
+    if (p.option === "bdl") return acc + p.qty * p.packPrice;
     else if (p.option === "case") return acc + p.qty * p.casePrice;
     return acc;
   }, 0);
@@ -193,7 +193,7 @@ export default function OrderDetails() {
               <div className="divide-y divide-gray-200">
                 {products.map((p, idx) => {
                   const total =
-                    p.option === "pack"
+                    p.option === "bdl"
                       ? p.qty * p.packPrice
                       : p.qty * p.casePrice;
                   const bgClass = idx % 2 === 0 ? "bg-gray-50" : "bg-white"; // alternating row color
@@ -206,7 +206,7 @@ export default function OrderDetails() {
                       <div className="w-20 text-center">{p.option}</div>
                       <div className="w-20 text-center">{p.qty}</div>
                       <div className="w-20 text-center">
-                        {p.option === "pack" ? p.packPrice : p.casePrice}
+                        {p.option === "bdl" ? p.packPrice : p.casePrice}
                       </div>
 
                       <div className="w-24 text-right">₱{total.toFixed(2)}</div>

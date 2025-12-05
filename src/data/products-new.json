@@ -1,9 +1,18 @@
 [
   {
+    "id": "",
+    "uid": "prod-567",
+    "item": "RAPSA CANTON 900g",
+    "bdl": "1",
+    "packsize": "900g",
+    "packPrize": 85,
+    "casePrice": 0
+  },
+  {
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
     "uid": "prod-010",
     "item": "Hobe Special Bihon 454g x 12",
-    "packing": "12",
+    "bdl": "12",
     "packsize": "454g",
     "packPrize": 32,
     "casePrice": 384
@@ -12,7 +21,7 @@
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
     "uid": "prod-001",
     "item": "Hobe Special Bihon 454g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "454g",
     "packPrize": 16,
     "casePrice": 384
@@ -21,7 +30,7 @@
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
     "uid": "prod-002",
     "item": "Hobe Special Bihon 454g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "454g",
     "packPrize": 33.62,
     "casePrice": 1008.6
@@ -30,7 +39,7 @@
     "id": "",
     "uid": "prod-003",
     "item": "Hobe Special Bihon 500g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "500g",
     "packPrize": 34.3,
     "casePrice": 1029.0
@@ -39,7 +48,7 @@
     "id": "1w8635wtsBegZjxDAre_vAVkYuDIN3tWR",
     "uid": "prod-004",
     "item": "Hobe Special Bihon 227g x 48",
-    "packing": "48",
+    "bdl": "48",
     "packsize": "227g",
     "packPrize": 16.31,
     "casePrice": 782.88
@@ -48,7 +57,7 @@
     "id": "1w8635wtsBegZjxDAre_vAVkYuDIN3tWR",
     "uid": "prod-200",
     "item": "Hobe Special Bihon 227g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "227g",
     "packPrize": 16,
     "casePrice": 384
@@ -57,7 +66,7 @@
     "id": "1zmx9Cl5YMK4Sko3X5cMIxmVLcpT2wkc-",
     "uid": "prod-005",
     "item": "Hobe Special Bihon 907g x 12",
-    "packing": "12",
+    "bdl": "12",
     "packsize": "907g",
     "packPrize": 67.25,
     "casePrice": 807
@@ -66,7 +75,7 @@
     "id": "1YcymhrTl7nqkV8cl_OU_3qStyijBLP9l",
     "uid": "prod-006",
     "item": "Hobe Canton 227g x 12",
-    "packing": "12",
+    "bdl": "12",
     "packsize": "227g",
     "packPrize": 35,
     "casePrice": 420
@@ -75,7 +84,7 @@
     "id": "1nvK0zfskc6GAzzYcg3EI95UpL62WOu81",
     "uid": "prod-007",
     "item": "Hobe Canton 454g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "454g",
     "packPrize": 68,
     "casePrice": 2040
@@ -84,7 +93,7 @@
     "id": "1nvK0zfskc6GAzzYcg3EI95UpL62WOu81",
     "uid": "prod-040",
     "item": "Hobe Canton 454g x 10",
-    "packing": "10",
+    "bdl": "10",
     "packsize": "454g",
     "packPrize": 65,
     "casePrice": 650
@@ -93,16 +102,25 @@
     "id": "1swEIrs5H3lzZYlisvXyn6IekcsnAOOgx",
     "uid": "prod-008",
     "item": "Hobe Palabok 454g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "454g",
     "packPrize": 33.95,
     "casePrice": 814.8
   },
   {
+    "id": "1swEIrs5H3lzZYlisvXyn6IekcsnAOOgx",
+    "uid": "prod-800",
+    "item": "Hobe Palabok 454g x 12",
+    "bdl": "12",
+    "packsize": "454g",
+    "packPrize": 33,
+    "casePrice": 396
+  },
+  {
     "id": "138KDdGvnjiNZTOLLyKz_dWPhTLeTnG8N",
     "uid": "prod-009",
-    "item": "Hobe Sotanghon 454g x 20",
-    "packing": "20",
+    "item": "Hobe Sotanghon 500g x 20",
+    "bdl": "20",
     "packsize": "454g",
     "packPrize": 130,
     "casePrice": 2600
@@ -111,7 +129,7 @@
     "id": "14cc2HHRkB0_gvgEPjn6t4KqJzeenTMrJ",
     "uid": "prod-110",
     "item": "Hobe Egg Noodles 200g x 50",
-    "packing": "50",
+    "bdl": "50",
     "packsize": "200g",
     "packPrize": 45,
     "casePrice": 2250
@@ -120,16 +138,25 @@
     "id": "14cc2HHRkB0_gvgEPjn6t4KqJzeenTMrJ",
     "uid": "prod-050",
     "item": "Hobe Egg Noodles 200g x 12",
-    "packing": "12",
+    "bdl": "12",
     "packsize": "200g",
     "packPrize": 35,
     "casePrice": 420
   },
   {
+    "id": "14cc2HHRkB0_gvgEPjn6t4KqJzeenTMrJ",
+    "uid": "prod-055",
+    "item": "Hobe Egg Noodles 200g x 20",
+    "bdl": "20",
+    "packsize": "200g",
+    "packPrize": 45,
+    "casePrice": 900
+  },
+  {
     "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
     "uid": "prod-011",
     "item": "Hobe Egg Noodles 400g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "400g",
     "packPrize": 75,
     "casePrice": 2250
@@ -138,16 +165,25 @@
     "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
     "uid": "prod-060",
     "item": "Hobe Egg Noodles 400g x 10",
-    "packing": "10",
+    "bdl": "10",
     "packsize": "400g",
     "packPrize": 65,
     "casePrice": 650
   },
   {
+    "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
+    "uid": "prod-111",
+    "item": "Hobe Egg Noodles 400g x 20",
+    "bdl": "30",
+    "packsize": "400g",
+    "packPrize": 75,
+    "casePrice": 1500
+  },
+  {
     "id": "1S5gsDhx5GONCEwYddEmq74q6nLLsGc2U",
     "uid": "prod-012",
     "item": "Golden Me Extra Special 454g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "454g",
     "packPrize": 33.62,
     "casePrice": 1008.6
@@ -156,7 +192,7 @@
     "id": "156G1YmBJWTUdlhFBfQMaZqj7IJx4B_TA",
     "uid": "prod-013",
     "item": "Golden Me Extra Special 227g x 48",
-    "packing": "48",
+    "bdl": "48",
     "packsize": "227g",
     "packPrize": 16.31,
     "casePrice": 782.88
@@ -165,7 +201,7 @@
     "id": "",
     "uid": "prod-014",
     "item": "Mega-Q Special Bihon 400g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "400g",
     "packPrize": 28.95,
     "casePrice": 868.5
@@ -174,7 +210,7 @@
     "id": "",
     "uid": "prod-015",
     "item": "Chickboy Sweet Corn 25g x 50",
-    "packing": "50",
+    "bdl": "50",
     "packsize": "25g",
     "packPrize": 5.6,
     "casePrice": 280
@@ -183,7 +219,7 @@
     "id": "",
     "uid": "prod-016",
     "item": "Chickboy Cheese 25g x 50",
-    "packing": "50",
+    "bdl": "50",
     "packsize": "25g",
     "packPrize": 5.6,
     "casePrice": 280
@@ -191,8 +227,8 @@
   {
     "id": "",
     "uid": "prod-017",
-    "item": "Chickboy Texas Smoked BBQ 30g x 50",
-    "packing": "50",
+    "item": "Chickboy Texas Smoked BBQ 25g x 50",
+    "bdl": "50",
     "packsize": "30g",
     "packPrize": 5.6,
     "casePrice": 280
@@ -201,16 +237,25 @@
     "id": "",
     "uid": "prod-018",
     "item": "Chickboy California Crunch 30g x 50",
-    "packing": "50",
+    "bdl": "50",
     "packsize": "30g",
     "packPrize": 17.15,
     "casePrice": 686
   },
   {
+    "id": "",
+    "uid": "prod-088",
+    "item": "Chickboy California Crunch 25g x 50",
+    "bdl": "50",
+    "packsize": "25g",
+    "packPrize": 5.6,
+    "casePrice": 280
+  },
+  {
     "id": "15-DKckwW0-0BjoDYG5fuxZxMEt9uPpKh",
     "uid": "prod-019",
     "item": "Chickboy Sweet Corn 100g x 40",
-    "packing": "40",
+    "bdl": "40",
     "packsize": "100g",
     "packPrize": 17.15,
     "casePrice": 686
@@ -219,7 +264,7 @@
     "id": "1sho6vH53Qtcm6IBu9sYhEs-Qcfaz02Qu",
     "uid": "prod-020",
     "item": "Chickboy Cheese 100g x 40",
-    "packing": "40",
+    "bdl": "40",
     "packsize": "100g",
     "packPrize": 17.15,
     "casePrice": 686
@@ -228,7 +273,7 @@
     "id": "1dicnK8MNtfDz8-jYP9YSqX4q72GyggrL",
     "uid": "prod-021",
     "item": "Chickboy Green Peas 100g x 40",
-    "packing": "40",
+    "bdl": "40",
     "packsize": "100g",
     "packPrize": 17.15,
     "casePrice": 686
@@ -237,7 +282,7 @@
     "id": "1o37T90ekpWorWax-3dkCgdWNT8IPZ8by",
     "uid": "prod-022",
     "item": "Chickboy Spaghetti 100g x 40",
-    "packing": "40",
+    "bdl": "40",
     "packsize": "100g",
     "packPrize": 17.15,
     "casePrice": 686
@@ -246,7 +291,7 @@
     "id": "1TJ_GfGSc_eJqZTiQQin0E0Tr_tk875nZ",
     "uid": "prod-023",
     "item": "Chickboy Texas Smoked BBQ 100g x 40",
-    "packing": "40",
+    "bdl": "40",
     "packsize": "100g",
     "packPrize": 17.15,
     "casePrice": 686
@@ -255,7 +300,7 @@
     "id": "1ueU1WYLKtKTHKieHNK-fqxWQtK7cYGx2",
     "uid": "prod-024",
     "item": "Chickboy California Crunch Onion and Garlic 100g x 40",
-    "packing": "40",
+    "bdl": "40",
     "packsize": "100g",
     "packPrize": 17.15,
     "casePrice": 686
@@ -264,7 +309,7 @@
     "id": "1qQ2u31HJn2ngcELLLNnAcAfa8W2efJWj",
     "uid": "prod-025",
     "item": "Tochi Crunchy Peas 'Vegetable Snack' 60g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "60g",
     "packPrize": 12.15,
     "casePrice": 306
@@ -273,7 +318,7 @@
     "id": "1-t35plRWUlhHHRA7RF7vcr9RdWQA4_9D",
     "uid": "prod-026",
     "item": "Tochi Onion Rings 'Vegetable Snack' 35g (Sour Cream & Onion Flavor) x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "35g",
     "packPrize": 7.76,
     "casePrice": 232.8
@@ -282,7 +327,7 @@
     "id": "1PeSV4wncY9Ndha6EttYBBJG64P-tAcpo",
     "uid": "prod-027",
     "item": "Chickboy Fish Crackers 'Salt and Vinegar Flavor' 100g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "100g",
     "packPrize": 19.55,
     "casePrice": 469.2
@@ -291,7 +336,7 @@
     "id": "17alMFcpDM1iJ9HsI2czaGrovv9BM2oEr",
     "uid": "prod-028",
     "item": "Chickboy Fish Crackers 'Hot & Spicy Flavor' 100g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "100g",
     "packPrize": 19.55,
     "casePrice": 469.2
@@ -300,25 +345,25 @@
     "id": "",
     "uid": "prod-029",
     "item": "Chickboy Fish Crackers 'Salt and Vinegar Flavor' 25g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "25g",
     "packPrize": 4.77,
-    "casePrice": 143
+    "casePrice": 143.1
   },
   {
     "id": "",
     "uid": "prod-030",
     "item": "Chickboy Fish Crackers 'Hot & Spicy Flavor' 25g x 30",
-    "packing": "30",
+    "bdl": "30",
     "packsize": "25g",
     "packPrize": 4.77,
-    "casePrice": 143
+    "casePrice": 143.1
   },
   {
     "id": "1QtFA-PaaOFYsNqRPCsnDnXRZLqoRGvrj",
     "uid": "prod-031",
     "item": "Chickboy Shing-A-Ling 'Hot & Spicy Flavor' 65g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "65g",
     "packPrize": 14.5,
     "casePrice": 348
@@ -327,7 +372,7 @@
     "id": "15HoQ5xYcLdlLYMo4c_5aJPQf3jS_GX2S",
     "uid": "prod-032",
     "item": "Chickboy Shing-A-Ling 'Original Flavor' 65g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "65g",
     "packPrize": 14.5,
     "casePrice": 348
@@ -336,7 +381,7 @@
     "id": "",
     "uid": "prod-033",
     "item": "Chickboy Macho Nacho Rings Sweetcorn 300g x 10",
-    "packing": "10",
+    "bdl": "10",
     "packsize": "300g",
     "packPrize": 69.52,
     "casePrice": 695.2
@@ -345,7 +390,7 @@
     "id": "",
     "uid": "prod-034",
     "item": "Chickboy Macho Nacho Rings Cheese 300g x 10",
-    "packing": "10",
+    "bdl": "10",
     "packsize": "300g",
     "packPrize": 69.52,
     "casePrice": 695.2
@@ -354,7 +399,7 @@
     "id": "11zMkwnJN2ufFRRMsIX0AIz7VbVpWadoo",
     "uid": "prod-035",
     "item": "Chickboy Wavez Multigrain Sizzling BBQ Flavor Snack 75g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "75g",
     "packPrize": 18.5,
     "casePrice": 444
@@ -363,7 +408,7 @@
     "id": "1dNV8Ca1ovM5L6sVh1DQNjTL7Prk-TlHt",
     "uid": "prod-036",
     "item": "Chickboy Wavez Multigrain Sweet Corn Flavor Snack 75g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "75g",
     "packPrize": 18.5,
     "casePrice": 444
@@ -372,7 +417,7 @@
     "id": "1AzsXLEFjM-8QBM22mQTnnxo0woCtfazO",
     "uid": "prod-037",
     "item": "Chickboy Wavez Multigrain Sweet Chili Flavor Snack 75g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "75g",
     "packPrize": 18.5,
     "casePrice": 444
@@ -381,7 +426,7 @@
     "id": "1RL6jNnhocKYpigWbAVh4myEhYU1Zvxs8",
     "uid": "prod-038",
     "item": "PRIVA - Cornstarch 200g x 48",
-    "packing": "48",
+    "bdl": "48",
     "packsize": "200g",
     "packPrize": 20,
     "casePrice": 960
@@ -390,7 +435,7 @@
     "id": "1pur6RwjFf5Ou6ADTBae4aAdojYoklOu9",
     "uid": "prod-039",
     "item": "PRIVA - Cornstarch 400g x 24",
-    "packing": "24",
+    "bdl": "24",
     "packsize": "400g",
     "packPrize": 34.55,
     "casePrice": 829.2
