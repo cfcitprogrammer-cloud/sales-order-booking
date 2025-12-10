@@ -14,7 +14,7 @@ export default function OrderDetails() {
   useEffect(() => {
     async function loadOrder() {
       const { data, error } = await supabase
-        .from("customer_data")
+        .from("customer_data_dev")
         .select("*")
         .eq("id", id)
         .single();
@@ -58,7 +58,7 @@ export default function OrderDetails() {
   // Cancel order function
   async function handleCancelOrder() {
     const { error } = await supabase
-      .from("customer_data")
+      .from("customer_data_dev")
       .update({ status: "CANCELLED" })
       .eq("id", id);
 

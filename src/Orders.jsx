@@ -20,7 +20,7 @@ export default function Orders() {
       const offset = (page - 1) * pageSize;
 
       let query = supabase
-        .from("customer_data")
+        .from("customer_data_dev")
         .select("*", { count: "exact" })
         .order("created_at", { ascending: false })
         .range(offset, offset + pageSize - 1);

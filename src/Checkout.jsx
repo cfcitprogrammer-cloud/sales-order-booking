@@ -106,7 +106,7 @@ export default function Checkout() {
 
     // Insert into Supabase DB
     const { data, error } = await supabase
-      .from("customer_data")
+      .from("customer_data_dev")
       .insert([
         {
           store_name: info.storeName,
