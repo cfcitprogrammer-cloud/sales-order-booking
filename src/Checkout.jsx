@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { convertTo12HourFormat } from "./utils/time";
+import useAuthStore from "./stores/authStore";
 
 export default function Checkout() {
   const customerInfo = useCustomerStore((state) => state.customerInfo);
@@ -16,6 +17,8 @@ export default function Checkout() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const { user } = useAuthStore();
 
   // -------------------------------------------------
   // UPLOAD IMAGE TO SUPABASE STORAGE
@@ -118,6 +121,7 @@ export default function Checkout() {
           remarks: info.remarks,
           attachment: imageUrl,
           orders: JSON.stringify(cart),
+          user_id: user?.id,
         },
       ])
       .select();
@@ -132,7 +136,7 @@ export default function Checkout() {
     const insertedId = data[0].id;
 
     // Submit ID to Google Form
-    await submitGoogleForm(insertedId);
+    // await submitGoogleForm(insertedId); // DISABLED FOR DEV PURPOSES
 
     // Clear Zustand stores
     clearCart();

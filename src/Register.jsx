@@ -3,52 +3,25 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "./stores/authStore";
 
 export default function Register() {
-  const [error, setError] = useState();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [isSales, setIsSales] = useState(false);
 
-  const [createUserLoading, setCreateUserLoading] = useState(false);
+  const { loading, signUp } = useAuthStore();
+
   const navigate = useNavigate();
 
   async function createUser(e) {
     e.preventDefault();
 
-    setCreateUserLoading(true);
+    const user = await signUp(email, password, name, isSales);
 
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            name,
-          },
-        },
-      });
-
-      if (error) {
-        setError(error);
-      } else {
-        if (isSales) {
-          await supabase.from("sales_agents").insert([
-            {
-              user_id: data.user.id,
-              name,
-            },
-          ]);
-          navigate("/products");
-        }
-      }
-    } catch (error) {
-      alert("Something went wrong. Check console.");
-      console.log("ERROR: ", error);
-    } finally {
-      setCreateUserLoading(false);
+    if (user) {
+      navigate("/products");
     }
   }
 
@@ -107,10 +80,10 @@ export default function Register() {
 
         <button
           className="btn btn-sm btn-primary"
-          disabled={createUserLoading}
+          disabled={loading}
           type="submit"
         >
-          {createUserLoading ? (
+          {loading ? (
             <>
               <span className="loading loading-bars loading-sm"></span>
               Loading...

@@ -1,4 +1,24 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "./supabase";
+
 export default function QuickSummaryTable() {
+  const [agents, setAgents] = useState([]);
+
+  async function fetchAgents() {
+    try {
+      console.log(data);
+      //   setAgents(data);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  useEffect(() => {
+    fetchAgents();
+  }, []);
+
   return (
     <div className="shadow p-4 rounded-xl">
       <div>
@@ -20,13 +40,15 @@ export default function QuickSummaryTable() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>1</td>
-              <td>11</td>
-              <td>120,000</td>
-            </tr>
+            {agents.map((agent, index) => (
+              <tr>
+                <th>{index + 1}</th>
+                <td>{agent.name}</td>
+                <td>1</td>
+                <td>11</td>
+                <td>120,000</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

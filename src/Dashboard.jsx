@@ -28,12 +28,14 @@ import Login from "./Login";
 import { supabase } from "./supabase";
 import Analytics from "./Analytics";
 import Register from "./Register";
+import useAuthStore from "./stores/authStore";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [user, setUser] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { user, signOut } = useAuthStore();
 
   // Toggle sidebar
   function toggleAside() {
@@ -48,36 +50,13 @@ export default function Dashboard() {
   }
 
   async function logOut() {
-    try {
-      await supabase.auth.signOut();
-
-      navigate("/login");
-    } catch (error) {
-      alert("Failed to sign out. Something went wrong");
-    }
-  }
-
-  async function guard() {
-    try {
-      const res = await supabase.auth.getSession();
-
-      if (res.error) {
-        // redirect
-      }
-
-      setUser(res.data.session.user);
-    } catch (error) {
-      // redirect
-    }
+    await signOut();
+    navigate("/login");
   }
 
   // Determine if the current route is the login page
   const isLoginPage =
     location.pathname === "/login" || location.pathname === "/register";
-
-  useEffect(() => {
-    guard();
-  }, [user]);
 
   return (
     <main
@@ -188,7 +167,7 @@ export default function Dashboard() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/register" element={<Register />} />
           <Route path="/master/db/:id" element={<OrderDetails />} />
-          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/login" element={<Login />} />
 
           {/* Catch-all route for invalid paths */}
           <Route path="*" element={<Navigate to="/products" replace />} />

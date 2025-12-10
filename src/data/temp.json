@@ -1,0 +1,178 @@
+[
+  {
+    "id": "prod-7867",
+    "item": "Mini Do Choco 40g",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 0,
+    "casePrice": 550,
+    "packSize": "40g",
+    "packing": "50",
+    "cartId": "6i20zsi114r5"
+  },
+  {
+    "id": "prod-7868",
+    "item": "Mini Do Milk 40g",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 0,
+    "casePrice": 550,
+    "packSize": "40g",
+    "packing": "50",
+    "cartId": "6i20zsi1214r5"
+  },
+  {
+    "id": "prod-567",
+    "item": "RAPSA CANTON 900g",
+    "option": "bdl",
+    "qty": 6,
+    "packPrice": 85,
+    "casePrice": 0,
+    "packSize": "900g",
+    "packing": "1",
+    "cartId": "6i20zsi64r5"
+  },
+  {
+    "id": "prod-010",
+    "item": "Hobe Special Bihon 454g x 12",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 32,
+    "casePrice": 384,
+    "packSize": "454g",
+    "packing": "12",
+    "cartId": "i6sp8ekadfl"
+  },
+  {
+    "id": "prod-001",
+    "item": "Hobe Special Bihon 454g x 24",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 16,
+    "casePrice": 384,
+    "packSize": "454g",
+    "packing": "24",
+    "cartId": "xu0qafl1rnj"
+  },
+  {
+    "id": "prod-040",
+    "item": "Hobe Canton 454g x 10",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 65,
+    "casePrice": 650,
+    "packSize": "454g",
+    "packing": "10",
+    "cartId": "bhmlbjrnaf6"
+  },
+  {
+    "id": "prod-800",
+    "item": "Hobe Palabok 454g x 12",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 33,
+    "casePrice": 396,
+    "packSize": "454g",
+    "packing": "12",
+    "cartId": "y412kriw5h8"
+  },
+  {
+    "id": "prod-006",
+    "item": "Hobe Canton 227g x 12",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 35,
+    "casePrice": 420,
+    "packSize": "227g",
+    "packing": "12",
+    "cartId": "d1zxeqjtvc"
+  },
+  {
+    "id": "prod-012",
+    "item": "Golden Me Extra Special 454g x 30",
+    "option": "bdl",
+    "qty": 12,
+    "packPrice": 33.62,
+    "casePrice": 1008.6,
+    "packSize": "454g",
+    "packing": "30",
+    "cartId": "e931y6ddvt"
+  },
+  {
+    "id": "prod-013",
+    "item": "Golden Me Extra Special 227g x 48",
+    "option": "bdl",
+    "qty": 24,
+    "packPrice": 16.31,
+    "casePrice": 782.88,
+    "packSize": "227g",
+    "packing": "48",
+    "cartId": "gbynwhxnbiu"
+  },
+  {
+    "id": "prod-015",
+    "item": "Chickboy Sweet Corn 25g x 50",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 5.6,
+    "casePrice": 280,
+    "packSize": "25g",
+    "packing": "50",
+    "cartId": "rs1755vnh5"
+  },
+  {
+    "id": "prod-016",
+    "item": "Chickboy Cheese 25g x 50",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 5.6,
+    "casePrice": 280,
+    "packSize": "25g",
+    "packing": "50",
+    "cartId": "p9oyixxt39r"
+  },
+  {
+    "id": "prod-019",
+    "item": "Chickboy Sweet Corn 100g x 40",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 17.15,
+    "casePrice": 686,
+    "packSize": "100g",
+    "packing": "40",
+    "cartId": "z6tiutrwna"
+  },
+  {
+    "id": "prod-029",
+    "item": "Chickboy Fish Crackers 'Salt and Vinegar Flavor' 25g x 30",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 4.77,
+    "casePrice": 143.1,
+    "packSize": "25g",
+    "packing": "30",
+    "cartId": "wm5vfz8s03b"
+  },
+  {
+    "id": "prod-030",
+    "item": "Chickboy Fish Crackers 'Hot & Spicy Flavor' 25g x 30",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 4.77,
+    "casePrice": 143.1,
+    "packSize": "25g",
+    "packing": "30",
+    "cartId": "77fto07ou39"
+  },
+  {
+    "id": "prod-006",
+    "item": "Hobe Canton 227g x 12",
+    "option": "case",
+    "qty": 1,
+    "packPrice": 35,
+    "casePrice": 420,
+    "packSize": "227g",
+    "packing": "12",
+    "cartId": "znu11rlndgj"
+  }
+]

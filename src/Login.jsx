@@ -3,37 +3,23 @@
 import { useState } from "react";
 import { supabase } from "./supabase";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "./stores/authStore";
 
-export default function Login({ setUser }) {
-  const [error, setError] = useState("");
-
-  const [email, setUsername] = useState("");
+export default function Login() {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
+
+  const { signIn, loading, error } = useAuthStore();
 
   async function onSubmit(e) {
     e.preventDefault();
 
-    setLoading(true);
+    const user = await signIn(email, password);
 
-    try {
-      const res = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (res?.error) {
-        setError(res?.error.message);
-      } else {
-        setUser(res.data?.user);
-        navigate("/products");
-      }
-    } catch (error) {
-    } finally {
-      setLoading(false);
+    if (user) {
+      navigate("/products");
     }
   }
 
@@ -72,7 +58,7 @@ export default function Login({ setUser }) {
             type="email"
             class="input input-sm w-full"
             placeholder="m@example.com"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </fieldset>
 

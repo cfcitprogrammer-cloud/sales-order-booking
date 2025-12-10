@@ -1,5 +1,23 @@
 [
   {
+    "id": "1WucAlPPSYqlrnvQmHmhKIMbEpXhnaKr9",
+    "uid": "prod-7867",
+    "item": "Mini Do Choco 40g",
+    "bdl": "50",
+    "packsize": "40g",
+    "packPrize": 11,
+    "casePrice": 550
+  },
+  {
+    "id": "1dUBkONEa-UX18C-8y_r3LvmFltmKh8Hz",
+    "uid": "prod-7868",
+    "item": "Mini Do Milk 40g",
+    "bdl": "50",
+    "packsize": "40g",
+    "packPrize": 11,
+    "casePrice": 550
+  },
+  {
     "id": "",
     "uid": "prod-567",
     "item": "RAPSA CANTON 900g",
