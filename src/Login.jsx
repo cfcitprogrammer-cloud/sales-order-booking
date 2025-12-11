@@ -4,6 +4,7 @@ import { useState } from "react";
 import { supabase } from "./supabase";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "./stores/authStore";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ export default function Login() {
 
   return (
     <section className="flex justify-center items-center h-full">
-      <form action="" className="w-1/3 space-y-4" onSubmit={onSubmit}>
+      <form action="" className="w-[300px] space-y-4" onSubmit={onSubmit}>
         <header className="text-center">
           <h1 className="font-semibold text-2xl">Sales Order Booking</h1>
           <p className="text-sm text-gray-600">
@@ -52,21 +53,21 @@ export default function Login() {
           </div>
         )}
 
-        <fieldset class="fieldset">
-          <legend class="fieldset-legend">Email</legend>
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">Email</legend>
           <input
             type="email"
-            class="input input-sm w-full"
+            className="input input-sm w-full"
             placeholder="m@example.com"
             onChange={(e) => setEmail(e.target.value)}
           />
         </fieldset>
 
-        <fieldset class="fieldset">
-          <legend class="fieldset-legend">Password</legend>
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend">Password</legend>
           <input
             type="password"
-            class="input input-sm w-full"
+            className="input input-sm w-full"
             placeholder="****"
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -82,6 +83,12 @@ export default function Login() {
             "Login"
           )}
         </button>
+        <p className="text-sm text-gray-600">
+          No account yet?{" "}
+          <Link className="underline" to={"/register"}>
+            Register
+          </Link>
+        </p>
       </form>
     </section>
   );

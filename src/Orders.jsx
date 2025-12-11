@@ -19,6 +19,8 @@ export default function Orders() {
       const pageSize = 10;
       const offset = (page - 1) * pageSize;
 
+      setLoading(true);
+
       let query = supabase
         .from("customer_data_dev")
         .select("*", { count: "exact" })

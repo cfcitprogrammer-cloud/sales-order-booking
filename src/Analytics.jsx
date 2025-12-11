@@ -42,8 +42,6 @@ export default function Analytics() {
         .gte("created_at", startOfDay) // Greater than or equal to the start of the day
         .lte("created_at", endOfDay);
 
-      console.log(data);
-
       if (error) {
         alert(error.message);
       } else {

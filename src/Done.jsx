@@ -4,9 +4,6 @@ import useCartStore from "./stores/cartStore";
 
 export default function Done() {
   const cart = useCartStore((state) => state.cart);
-  useEffect(() => {
-    console.log(cart);
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen text-center p-6">

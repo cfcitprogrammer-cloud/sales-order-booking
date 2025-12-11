@@ -16,10 +16,6 @@ export default function CustomerInfoModal({ isOpen, onClose }) {
     customerInfo.deliveryDate &&
     customerInfo.receivingTime;
 
-  useEffect(() => {
-    console.log(customerInfo);
-  }, [customerInfo]);
-
   // Handle file upload
   const handleAttachment = (e) => {
     const file = e.target.files[0];

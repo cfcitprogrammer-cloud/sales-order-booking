@@ -30,6 +30,8 @@ import Analytics from "./Analytics";
 import Register from "./Register";
 import useAuthStore from "./stores/authStore";
 
+import PrivateRoute from "./PrivateRoute";
+
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
@@ -140,8 +142,8 @@ export default function Dashboard() {
 
       {/* Main content area */}
       <section
-        className={`col-span-12 lg:col-span-10 bg-white h-full max-h-full overflow-y-scroll ${
-          isLoginPage ? "p-6" : ""
+        className={`col-span-12 bg-white h-full max-h-full overflow-y-scroll ${
+          isLoginPage ? "p-6" : "lg:col-span-10"
         }`}
       >
         {/* Navigation bar only for non-login routes */}
@@ -160,14 +162,17 @@ export default function Dashboard() {
 
         {/* Content here */}
         <Routes>
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/checkout" element={<Checkout />} />
-          <Route path="/products/done" element={<Done />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/analytics" element={<Analytics />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/master/db/:id" element={<OrderDetails />} />
           <Route path="/login" element={<Login />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/checkout" element={<Checkout />} />
+            <Route path="/products/done" element={<Done />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/master/db/:id" element={<OrderDetails />} />
+          </Route>
 
           {/* Catch-all route for invalid paths */}
           <Route path="*" element={<Navigate to="/products" replace />} />

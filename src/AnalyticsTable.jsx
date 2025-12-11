@@ -58,10 +58,6 @@ export default function AnalyticsTable({ orders }) {
     setAgents(aggregatedData); // Update the agents state with aggregated data
   }, [orders]);
 
-  useEffect(() => {
-    console.log("AGENTS: ", agents);
-  }, [agents]);
-
   return (
     <div className="shadow rounded-xl p-4">
       <header>

@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuthStore from "./stores/authStore";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [isSales, setIsSales] = useState(false);
 
   const { loading, signUp } = useAuthStore();
 
@@ -18,7 +17,7 @@ export default function Register() {
   async function createUser(e) {
     e.preventDefault();
 
-    const user = await signUp(email, password, name, isSales);
+    const user = await signUp(email, password, name);
 
     if (user) {
       navigate("/products");
@@ -26,10 +25,10 @@ export default function Register() {
   }
 
   return (
-    <section className="p-4">
-      <form action="" className="space-y-4" onSubmit={createUser}>
-        <div>
-          <h1 className="text-2xl font-semibold">Create User</h1>
+    <section className="p-4 w-full h-full flex justify-center items-center">
+      <form action="" className="space-y-2 w-64" onSubmit={createUser}>
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold">Register</h1>
           <p className="text-sm text-gray-500">Create user credentials</p>
         </div>
         <fieldset className="fieldset">
@@ -65,33 +64,25 @@ export default function Register() {
           />
         </fieldset>
 
-        <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-64 border p-4">
-          <legend className="fieldset-legend">Are you from sales?</legend>
-          <label className="label">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={isSales}
-              onChange={(e) => setIsSales(e.target.value)}
-            />
-            Yes, I'm from sales
-          </label>
-        </fieldset>
-
         <button
-          className="btn btn-sm btn-primary"
+          className="btn btn-sm btn-primary w-full"
           disabled={loading}
           type="submit"
         >
           {loading ? (
             <>
               <span className="loading loading-bars loading-sm"></span>
-              Loading...
             </>
           ) : (
             "Create User"
           )}
         </button>
+        <p className="text-sm text-gray-600">
+          Have an account?{" "}
+          <Link className="underline" to={"/login"}>
+            Sign In
+          </Link>
+        </p>
       </form>
     </section>
   );

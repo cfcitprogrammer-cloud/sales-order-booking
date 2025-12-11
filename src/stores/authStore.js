@@ -35,6 +35,7 @@ const useAuthStore = create((set) => ({
         options: {
           data: {
             name,
+            isSales,
           },
         },
       });

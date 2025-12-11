@@ -65,8 +65,6 @@ const useCartStore = create((set) => ({
   // Remove a single specific item from the cart
   removeFromCart: (cartId) =>
     set((state) => {
-      console.log(state);
-      console.log(cartId);
       return {
         cart: state.cart.filter((item) => item.cartId !== cartId),
       };
