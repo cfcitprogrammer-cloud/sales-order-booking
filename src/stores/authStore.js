@@ -6,6 +6,7 @@ const useAuthStore = create((set) => ({
   user: null,
   loading: false,
   error: "",
+  role: null, // Add state to store the role
 
   // SignIn method
   signIn: async (email, password) => {
@@ -35,7 +36,6 @@ const useAuthStore = create((set) => ({
         options: {
           data: {
             name,
-            role: "user",
           },
         },
       });
@@ -53,7 +53,7 @@ const useAuthStore = create((set) => ({
   signOut: async () => {
     try {
       await supabase.auth.signOut();
-      set({ user: null });
+      set({ user: null, role: null }); // Clear user and role on signout
     } catch (error) {
       set({ error: error.message });
     }
@@ -69,11 +69,32 @@ const useAuthStore = create((set) => ({
     }
     set({ user: session?.user || null, loading: false });
   },
+
+  // New method to get role from app_metadata
+  getRole: () => {
+    set((state) => {
+      if (state.user && state.user.app_metadata) {
+        // Extract the role from app_metadata
+        const role = state.user.app_metadata?.role || null;
+        return { role }; // Set the role in the store
+      }
+      return { role: null }; // Return null if no role found
+    });
+  },
 }));
 
 // Listen to auth state changes - updating Zustand store automatically when state changes
 supabase.auth.onAuthStateChange((event, session) => {
-  useAuthStore.setState({ user: session?.user || null });
+  // When the auth state changes, set the user and extract role from app_metadata
+  useAuthStore.setState({
+    user: session?.user || null,
+  });
+
+  // Extract role from user app_metadata
+  if (session?.user?.app_metadata) {
+    const role = session.user.app_metadata?.role || null;
+    useAuthStore.setState({ role });
+  }
 });
 
 export default useAuthStore;

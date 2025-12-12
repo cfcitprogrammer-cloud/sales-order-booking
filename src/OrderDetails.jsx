@@ -10,6 +10,7 @@ export default function OrderDetails() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [showCancelPrompt, setShowCancelPrompt] = useState(false);
+  const [showApprovePrompt, setShowApprovePrompt] = useState(false);
 
   useEffect(() => {
     async function loadOrder() {
@@ -68,6 +69,22 @@ export default function OrderDetails() {
     } else {
       setOrder((prevOrder) => ({ ...prevOrder, status: "CANCELLED" }));
       setShowCancelPrompt(false);
+    }
+  }
+
+  // Approve order function
+  async function handleApproveOrder() {
+    const { error } = await supabase
+      .from("customer_data_dev")
+      .update({ status: "APPROVED" })
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error approving order:", error);
+      setErrorMsg("Failed to approve order.");
+    } else {
+      setOrder((prevOrder) => ({ ...prevOrder, status: "APPROVED" }));
+      setShowApprovePrompt(false);
     }
   }
 
@@ -135,17 +152,29 @@ export default function OrderDetails() {
           </div>
         </div>
 
-        {/* Cancel Order Button */}
-        {order.status === "PENDING" && (
-          <button
-            onClick={() => setShowCancelPrompt(true)}
-            className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-          >
-            Cancel Order
-          </button>
-        )}
+        <div className="space-x-4">
+          {/* Cancel Order Button */}
+          {order.status === "PENDING" && (
+            <button
+              onClick={() => setShowCancelPrompt(true)}
+              className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+            >
+              Cancel Order
+            </button>
+          )}
 
-        {/* Confirmation Prompt */}
+          {/* Approve Order Button */}
+          {order.status === "PENDING" && (
+            <button
+              onClick={() => setShowApprovePrompt(true)}
+              className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+            >
+              Approve Order
+            </button>
+          )}
+        </div>
+
+        {/* Confirmation Prompts */}
         {showCancelPrompt && (
           <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded shadow-lg text-center">
@@ -154,9 +183,7 @@ export default function OrderDetails() {
               </h3>
               <div className="flex justify-center space-x-4">
                 <button
-                  onClick={() => {
-                    setShowCancelPrompt(false);
-                  }}
+                  onClick={() => setShowCancelPrompt(false)}
                   className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
                 >
                   No
@@ -164,6 +191,30 @@ export default function OrderDetails() {
                 <button
                   onClick={handleCancelOrder}
                   className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {showApprovePrompt && (
+          <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-6 rounded shadow-lg text-center">
+              <h3 className="text-lg font-semibold mb-4">
+                Are you sure you want to approve this order?
+              </h3>
+              <div className="flex justify-center space-x-4">
+                <button
+                  onClick={() => setShowApprovePrompt(false)}
+                  className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                >
+                  No
+                </button>
+                <button
+                  onClick={handleApproveOrder}
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                 >
                   Yes
                 </button>

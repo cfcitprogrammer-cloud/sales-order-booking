@@ -39,11 +39,12 @@ export default function Dashboard() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { user, signOut } = useAuthStore();
+  const { user, signOut, role } = useAuthStore();
 
   // Toggle sidebar
   function toggleAside() {
     setIsSidebarOpen(!isSidebarOpen);
+    console.log(user.app_metadata);
   }
 
   // Close sidebar when a link is clicked
@@ -110,6 +111,7 @@ export default function Dashboard() {
               <ReceiptText size={16} className="mr-2" />
               Orders
             </Link>
+
             <Link
               to="/analytics"
               onClick={handleLinkClick} // Close sidebar when clicked
@@ -177,13 +179,27 @@ export default function Dashboard() {
           <Route path="/login" element={<Login />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/checkout" element={<Checkout />} />
-            <Route path="/products/done" element={<Done />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/approve-orders" element={<ApproveOrder />} />
-            <Route path="/master/db/:id" element={<OrderDetails />} />
+            {["dev", "admin", "accounting", "sales"].includes(role) && (
+              <>
+                <Route path="/products" element={<Products />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/master/db/:id" element={<OrderDetails />} />
+              </>
+            )}
+
+            {["dev", "sales"].includes(role) && (
+              <>
+                <Route path="/products/checkout" element={<Checkout />} />
+                <Route path="/products/done" element={<Done />} />
+              </>
+            )}
+
+            {["dev", "admin", "accounting"].includes(role) && (
+              <>
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/approve-orders" element={<ApproveOrder />} />
+              </>
+            )}
           </Route>
 
           {/* Catch-all route for invalid paths */}
