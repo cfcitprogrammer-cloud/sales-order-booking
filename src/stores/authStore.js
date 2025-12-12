@@ -26,7 +26,7 @@ const useAuthStore = create((set) => ({
   },
 
   // SignUp method
-  signUp: async (email, password, name, isSales = false) => {
+  signUp: async (email, password, name) => {
     try {
       set({ loading: true });
       const { data, error } = await supabase.auth.signUp({
@@ -35,21 +35,12 @@ const useAuthStore = create((set) => ({
         options: {
           data: {
             name,
-            isSales,
+            role: "user",
           },
         },
       });
 
       if (error) throw error;
-
-      if (isSales) {
-        await supabase.from("sales_agents").insert([
-          {
-            user_id: data.user.id,
-            name: data.user.user_metadata.name,
-          },
-        ]);
-      }
 
       set({ user: data.user, loading: false });
       return data.user; // Return user for further handling (like redirect)

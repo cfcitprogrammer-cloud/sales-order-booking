@@ -3,3 +3,17 @@
 @plugin "daisyui" {
   themes: light --default;
 }
+
+@layer base {
+  .text-approved {
+    @apply text-success;
+  }
+
+  .text-pending {
+    @apply text-warning;
+  }
+
+  .text-cancelled {
+    @apply text-error;
+  }
+}

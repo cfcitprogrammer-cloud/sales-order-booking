@@ -8,6 +8,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   ReceiptText,
+  Stamp,
   User,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -31,6 +32,7 @@ import Register from "./Register";
 import useAuthStore from "./stores/authStore";
 
 import PrivateRoute from "./PrivateRoute";
+import ApproveOrder from "./ApproveOrders";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -116,10 +118,19 @@ export default function Dashboard() {
               <ChartSpline size={16} className="mr-2" />
               Analytics
             </Link>
+            <Link
+              to="/approve-orders"
+              onClick={handleLinkClick} // Close sidebar when clicked
+              className="btn btn-ghost w-full justify-start rounded-none font-normal"
+            >
+              <Stamp size={16} className="mr-2" />
+              Approve Orders
+            </Link>
           </div>
 
           <footer className="mt-auto">
-            <div className="p-4">
+            <div className="divider"></div>
+            <div className="px-4 pb-4">
               <div className="rounded space-y-4">
                 <div>
                   <h1 className="font-semibold font-md">
@@ -171,6 +182,7 @@ export default function Dashboard() {
             <Route path="/products/done" element={<Done />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/analytics" element={<Analytics />} />
+            <Route path="/approve-orders" element={<ApproveOrder />} />
             <Route path="/master/db/:id" element={<OrderDetails />} />
           </Route>
 
