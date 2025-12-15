@@ -10,7 +10,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  const { loading, signUp } = useAuthStore();
+  const { loading, signUp, error } = useAuthStore();
 
   const navigate = useNavigate();
 
@@ -31,6 +31,26 @@ export default function Register() {
           <h1 className="text-2xl font-semibold">Register</h1>
           <p className="text-sm text-gray-500">Create user credentials</p>
         </div>
+
+        {error && (
+          <div role="alert" className="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
+
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Email</legend>
           <input
