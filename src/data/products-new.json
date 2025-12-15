@@ -199,12 +199,30 @@
   },
   {
     "id": "1S5gsDhx5GONCEwYddEmq74q6nLLsGc2U",
+    "uid": "prod-0121",
+    "item": "Golden Me Extra Special 454g x 12",
+    "bdl": "12",
+    "packsize": "454g",
+    "packPrize": 32.0,
+    "casePrice": 384
+  },
+  {
+    "id": "1S5gsDhx5GONCEwYddEmq74q6nLLsGc2U",
     "uid": "prod-012",
     "item": "Golden Me Extra Special 454g x 30",
     "bdl": "30",
     "packsize": "454g",
     "packPrize": 33.62,
     "casePrice": 1008.6
+  },
+  {
+    "id": "156G1YmBJWTUdlhFBfQMaZqj7IJx4B_TA",
+    "uid": "prod-01311",
+    "item": "Golden Me Extra Special 227g x 24",
+    "bdl": "24",
+    "packsize": "227g",
+    "packPrize": 32.0,
+    "casePrice": 768.0
   },
   {
     "id": "156G1YmBJWTUdlhFBfQMaZqj7IJx4B_TA",
