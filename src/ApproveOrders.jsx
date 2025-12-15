@@ -98,7 +98,7 @@ export default function ApproveOrder() {
 
     try {
       const { error } = await supabase
-        .from("customer_data_dev")
+        .from("customer_data")
         .update({ status: action })
         .in("id", Array.from(selectedOrders));
 

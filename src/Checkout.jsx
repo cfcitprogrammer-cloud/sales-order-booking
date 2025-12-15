@@ -109,7 +109,7 @@ export default function Checkout() {
 
     // Insert into Supabase DB
     const { data, error } = await supabase
-      .from("customer_data_dev")
+      .from("customer_data")
       .insert([
         {
           store_name: info.storeName,
@@ -136,7 +136,7 @@ export default function Checkout() {
     const insertedId = data[0].id;
 
     // Submit ID to Google Form
-    // await submitGoogleForm(insertedId); // DISABLED FOR DEV PURPOSES
+    await submitGoogleForm(insertedId); // DISABLED FOR DEV PURPOSES
 
     // Clear Zustand stores
     clearCart();

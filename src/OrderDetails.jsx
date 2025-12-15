@@ -62,7 +62,7 @@ export default function OrderDetails() {
   // Cancel order function
   async function handleCancelOrder() {
     const { error } = await supabase
-      .from("customer_data_dev")
+      .from("customer_data")
       .update({ status: "CANCELLED" })
       .eq("id", id);
 
@@ -78,7 +78,7 @@ export default function OrderDetails() {
   // Approve order function
   async function handleApproveOrder() {
     const { error } = await supabase
-      .from("customer_data_dev")
+      .from("customer_data")
       .update({ status: "APPROVED" })
       .eq("id", id);
 
