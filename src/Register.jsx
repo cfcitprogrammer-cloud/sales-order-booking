@@ -20,7 +20,7 @@ export default function Register() {
     const user = await signUp(email, password, name);
 
     if (user) {
-      navigate("/products");
+      navigate("/");
     }
   }
 

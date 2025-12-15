@@ -22,7 +22,7 @@ export default function Orders() {
       setLoading(true);
 
       let query = supabase
-        .from("customer_data_dev")
+        .from("customer_with_user")
         .select("*", { count: "exact" })
         .order("created_at", { ascending: false })
         .range(offset, offset + pageSize - 1);
@@ -41,6 +41,7 @@ export default function Orders() {
         console.error(error);
         setErrorMsg("Unable to fetch orders.");
       } else {
+        console.log(data);
         setOrders(data);
         setTotalPages(Math.ceil(count / pageSize));
       }
@@ -94,6 +95,7 @@ export default function Orders() {
                     <tr>
                       <th>Order ID</th>
                       <th>Store Name</th>
+                      <th>Agent</th>
                       <th>Location</th>
                       <th>Customer Name</th>
                       <th>Contact Person</th>
@@ -109,6 +111,7 @@ export default function Orders() {
                       <tr key={order.id}>
                         <td>{order.id}</td>
                         <td>{order.store_name}</td>
+                        <td>{order.raw_user_meta_data?.name}</td>
                         <td>{order.location}</td>
                         <td>{order.customer_name}</td>
                         <td>{order.contact_person}</td>
@@ -198,6 +201,9 @@ export default function Orders() {
                     </p>
                     <p>
                       <strong>Store:</strong> {order.store_name}
+                    </p>
+                    <p>
+                      <strong>Agent: </strong> {order.raw_user_meta_data?.name}
                     </p>
                     <p>
                       <strong>Location:</strong> {order.location}

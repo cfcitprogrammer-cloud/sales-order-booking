@@ -3,13 +3,11 @@
 import {
   Box,
   ChartSpline,
-  HelpCircle,
   Package,
   PanelLeftClose,
   PanelLeftOpen,
   ReceiptText,
   Stamp,
-  User,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
@@ -26,13 +24,13 @@ import Done from "./Done";
 import Orders from "./Orders";
 import OrderDetails from "./OrderDetails";
 import Login from "./Login";
-import { supabase } from "./supabase";
-import Analytics from "./Analytics";
 import Register from "./Register";
-import useAuthStore from "./stores/authStore";
-
-import PrivateRoute from "./PrivateRoute";
+import Analytics from "./Analytics";
 import ApproveOrder from "./ApproveOrders";
+import { WaitApproval } from "./WaitApproval";
+
+import useAuthStore from "./stores/authStore";
+import PrivateRoute from "./PrivateRoute";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,14 +42,11 @@ export default function Dashboard() {
   // Toggle sidebar
   function toggleAside() {
     setIsSidebarOpen(!isSidebarOpen);
-    console.log(user.app_metadata);
   }
 
   // Close sidebar when a link is clicked
   function handleLinkClick() {
-    if (isSidebarOpen) {
-      toggleAside();
-    }
+    if (isSidebarOpen) toggleAside();
   }
 
   async function logOut() {
@@ -59,18 +54,19 @@ export default function Dashboard() {
     navigate("/login");
   }
 
-  // Determine if the current route is the login page
-  const isLoginPage =
-    location.pathname === "/login" || location.pathname === "/register";
+  // Determine if the current route is login/register/verify
+  const isAuthPage = ["/login", "/register", "/verify"].includes(
+    location.pathname
+  );
 
   return (
     <main
       className={`grid grid-cols-12 h-screen relative ${
-        isLoginPage ? "bg-white" : ""
+        isAuthPage ? "bg-white" : ""
       }`}
     >
-      {/* Sidebar for mobile and desktop */}
-      {!isLoginPage && (
+      {/* Sidebar */}
+      {!isAuthPage && (
         <aside
           className={`col-span-2 z-50 bg-gray-100 h-full flex flex-col lg:relative lg:translate-x-0 ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -95,39 +91,50 @@ export default function Dashboard() {
               Main
             </h2>
 
-            <Link
-              to="/products"
-              onClick={handleLinkClick} // Close sidebar when clicked
-              className="btn btn-ghost w-full justify-start items-center rounded-none font-normal"
-            >
-              <Box size={16} className="mr-2" />
-              Products
-            </Link>
-            <Link
-              to="/orders"
-              onClick={handleLinkClick} // Close sidebar when clicked
-              className="btn btn-ghost w-full justify-start rounded-none font-normal"
-            >
-              <ReceiptText size={16} className="mr-2" />
-              Orders
-            </Link>
+            {/* Role-based links */}
+            {["dev", "admin", "accounting", "sales"].includes(role) && (
+              <>
+                <Link
+                  to="/products"
+                  onClick={handleLinkClick}
+                  className="btn btn-ghost w-full justify-start rounded-none font-normal"
+                >
+                  <Box size={16} className="mr-2" />
+                  Products
+                </Link>
 
-            <Link
-              to="/analytics"
-              onClick={handleLinkClick} // Close sidebar when clicked
-              className="btn btn-ghost w-full justify-start rounded-none font-normal"
-            >
-              <ChartSpline size={16} className="mr-2" />
-              Analytics
-            </Link>
-            <Link
-              to="/approve-orders"
-              onClick={handleLinkClick} // Close sidebar when clicked
-              className="btn btn-ghost w-full justify-start rounded-none font-normal"
-            >
-              <Stamp size={16} className="mr-2" />
-              Approve Orders
-            </Link>
+                <Link
+                  to="/orders"
+                  onClick={handleLinkClick}
+                  className="btn btn-ghost w-full justify-start rounded-none font-normal"
+                >
+                  <ReceiptText size={16} className="mr-2" />
+                  Orders
+                </Link>
+              </>
+            )}
+
+            {["sales", "dev", "admin", "accounting"].includes(role) && (
+              <Link
+                to="/analytics"
+                onClick={handleLinkClick}
+                className="btn btn-ghost w-full justify-start rounded-none font-normal"
+              >
+                <ChartSpline size={16} className="mr-2" />
+                Analytics
+              </Link>
+            )}
+
+            {["dev", "admin", "accounting"].includes(role) && (
+              <Link
+                to="/approve-orders"
+                onClick={handleLinkClick}
+                className="btn btn-ghost w-full justify-start rounded-none font-normal"
+              >
+                <Stamp size={16} className="mr-2" />
+                Approve Orders
+              </Link>
+            )}
           </div>
 
           <footer className="mt-auto">
@@ -153,14 +160,13 @@ export default function Dashboard() {
         </aside>
       )}
 
-      {/* Main content area */}
+      {/* Main content */}
       <section
         className={`col-span-12 bg-white h-full max-h-full overflow-y-scroll ${
-          isLoginPage ? "p-6" : "lg:col-span-10"
+          isAuthPage ? "p-6" : "lg:col-span-10"
         }`}
       >
-        {/* Navigation bar only for non-login routes */}
-        {!isLoginPage && (
+        {!isAuthPage && (
           <nav className="flex items-center justify-between p-2 lg:hidden">
             <button
               onClick={toggleAside}
@@ -168,42 +174,49 @@ export default function Dashboard() {
             >
               <PanelLeftOpen />
             </button>
-
             <h1 className="font-semibold text-sm">Sales Order Booking</h1>
           </nav>
         )}
 
-        {/* Content here */}
         <Routes>
+          {/* Public Routes */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/verify" element={<WaitApproval />} />
 
-          <Route element={<PrivateRoute />}>
-            {["dev", "admin", "accounting", "sales"].includes(role) && (
-              <>
-                <Route path="/products" element={<Products />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/master/db/:id" element={<OrderDetails />} />
-              </>
-            )}
+          {/* Private Routes */}
+          <Route element={<PrivateRoute requireRole={true} />}>
+            <Route path="/products" element={<Products />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/master/db/:id" element={<OrderDetails />} />
 
-            {["dev", "sales"].includes(role) && (
+            {["sales", "dev"].includes(role) && (
               <>
                 <Route path="/products/checkout" element={<Checkout />} />
                 <Route path="/products/done" element={<Done />} />
               </>
             )}
 
+            {["sales", "dev", "admin", "accounting"].includes(role) && (
+              <Route path="/analytics" element={<Analytics />} />
+            )}
+
             {["dev", "admin", "accounting"].includes(role) && (
-              <>
-                <Route path="/analytics" element={<Analytics />} />
-                <Route path="/approve-orders" element={<ApproveOrder />} />
-              </>
+              <Route path="/approve-orders" element={<ApproveOrder />} />
             )}
           </Route>
 
-          {/* Catch-all route for invalid paths */}
-          <Route path="*" element={<Navigate to="/products" replace />} />
+          {/* Catch-all */}
+          <Route
+            path="*"
+            element={
+              role ? (
+                <Navigate to="/products" replace />
+              ) : (
+                <Navigate to="/verify" replace />
+              )
+            }
+          />
         </Routes>
       </section>
     </main>

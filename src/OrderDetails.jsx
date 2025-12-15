@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "./supabase";
 import { convertTo12HourFormat } from "./utils/time";
+import useAuthStore from "./stores/authStore";
 
 export default function OrderDetails() {
   const { id } = useParams();
@@ -12,10 +13,12 @@ export default function OrderDetails() {
   const [showCancelPrompt, setShowCancelPrompt] = useState(false);
   const [showApprovePrompt, setShowApprovePrompt] = useState(false);
 
+  const { role } = useAuthStore();
+
   useEffect(() => {
     async function loadOrder() {
       const { data, error } = await supabase
-        .from("customer_data_dev")
+        .from("customer_with_user")
         .select("*")
         .eq("id", id)
         .single();
@@ -130,6 +133,9 @@ export default function OrderDetails() {
               <strong>Store:</strong> {order.store_name}
             </p>
             <p>
+              <strong>Agent:</strong> {order.raw_user_meta_data?.name}
+            </p>
+            <p>
               <strong>Location:</strong> {order.location}
             </p>
             <p>
@@ -154,7 +160,7 @@ export default function OrderDetails() {
 
         <div className="space-x-4">
           {/* Cancel Order Button */}
-          {order.status === "PENDING" && (
+          {order.status === "PENDING" && ["sales", "dev"].includes(role) && (
             <button
               onClick={() => setShowCancelPrompt(true)}
               className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
@@ -163,15 +169,15 @@ export default function OrderDetails() {
             </button>
           )}
 
-          {/* Approve Order Button */}
-          {order.status === "PENDING" && (
-            <button
-              onClick={() => setShowApprovePrompt(true)}
-              className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
-            >
-              Approve Order
-            </button>
-          )}
+          {order.status === "PENDING" &&
+            ["accounting", "dev"].includes(role) && (
+              <button
+                onClick={() => setShowApprovePrompt(true)}
+                className="mb-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+              >
+                Approve Order
+              </button>
+            )}
         </div>
 
         {/* Confirmation Prompts */}

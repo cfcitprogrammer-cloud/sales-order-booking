@@ -6,12 +6,14 @@ import useCustomerStore from "./stores/customerStore";
 import products from "./data/products-new.json"; // Your product list
 import { useNavigate } from "react-router-dom";
 import CustomerInfoModal from "./CustomerInfoModal"; // Import the modal for customer info
+import useAuthStore from "./stores/authStore";
 
 export default function Products() {
   const navigate = useNavigate();
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const cart = useCartStore((state) => state.cart);
+  const { role } = useAuthStore();
 
   const [qty, setQty] = useState({});
   const [option, setOption] = useState({});
@@ -88,8 +90,13 @@ export default function Products() {
                 {/* View Cart Button */}
                 <div className="mt-4 flex flex-wrap gap-4 justify-start">
                   <button
-                    className="btn btn-secondary w-full sm:w-auto"
-                    onClick={() => setIsCustomerModalOpen(true)} // Open the customer modal on click
+                    className={`btn btn-secondary w-full sm:w-auto ${
+                      ["accounting", "admin"].includes(role)
+                        ? "btn-disabled"
+                        : ""
+                    }`}
+                    onClick={() => setIsCustomerModalOpen(true)}
+                    disabled={["accounting", "admin"].includes(role)}
                   >
                     Proceed to Checkout
                   </button>
@@ -164,10 +171,15 @@ export default function Products() {
                     {/* Add to Cart button */}
                     <div className="card-actions justify-end">
                       <button
-                        className="btn btn-primary btn-sm w-full"
+                        className={`btn btn-primary btn-sm w-full ${
+                          ["accounting", "admin"].includes(role)
+                            ? "btn-disabled"
+                            : ""
+                        }`}
                         onClick={() => handleAdd(product)}
+                        disabled={["accounting", "admin"].includes(role)}
                       >
-                        <Plus /> Add to Cart
+                        <Plus /> Add to cart
                       </button>
                     </div>
                   </div>

@@ -1,32 +1,29 @@
-"use client";
-
 import { useState } from "react";
-import { supabase } from "./supabase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import useAuthStore from "./stores/authStore";
-import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-
+  const location = useLocation(); // get location state
   const { signIn, loading, error } = useAuthStore();
+
+  const from = location.state?.from?.pathname || "/products"; // fallback
 
   async function onSubmit(e) {
     e.preventDefault();
-
     const user = await signIn(email, password);
 
     if (user) {
-      navigate("/products");
+      navigate(from, { replace: true }); // redirect to original private route
     }
   }
 
   return (
     <section className="flex justify-center items-center h-full">
-      <form action="" className="w-[300px] space-y-4" onSubmit={onSubmit}>
+      <form className="w-[300px] space-y-4" onSubmit={onSubmit}>
         <header className="text-center">
           <h1 className="font-semibold text-2xl">Sales Order Booking</h1>
           <p className="text-sm text-gray-600">
@@ -34,7 +31,7 @@ export default function Login() {
           </p>
         </header>
 
-        {error != "" && (
+        {error && (
           <div role="alert" className="alert alert-error">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -1,64 +1,85 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "./supabase";
 import { Check, Ellipsis, Eye, Hourglass, X } from "lucide-react";
 import ApproveModal from "./ApproveModal";
 import { Link } from "react-router-dom";
 
 export default function ApproveOrder() {
-  const [searchQuery, setQuery] = useState("");
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [queryState, setQueryState] = useState({
+    searchQuery: "",
+    filterStatus: "",
+    page: 1,
+  });
+  const [ordersData, setOrdersData] = useState({
+    orders: [],
+    totalPages: 1,
+    loading: true,
+    errorMsg: "",
+  });
   const [selectedOrders, setSelectedOrders] = useState(new Set());
   const [modalMessage, setModalMessage] = useState("");
   const [modalAction, setModalAction] = useState("");
-  const [filterStatus, setFilterStatus] = useState("");
 
-  const loadOrders = async (status = "") => {
-    const pageSize = 10;
-    const offset = (page - 1) * pageSize;
+  const pageSize = 10;
 
-    setLoading(true);
+  // Debounced search
+  const [debouncedSearch, setDebouncedSearch] = useState(
+    queryState.searchQuery
+  );
+
+  useEffect(() => {
+    const handler = setTimeout(
+      () => setDebouncedSearch(queryState.searchQuery),
+      300
+    );
+    return () => clearTimeout(handler);
+  }, [queryState.searchQuery]);
+
+  const loadOrders = useCallback(async () => {
+    const offset = (queryState.page - 1) * pageSize;
+    setOrdersData((prev) => ({ ...prev, loading: true }));
+
     let query = supabase
-      .from("customer_data_dev")
+      .from("customer_with_user")
       .select("*", { count: "exact" })
       .order("created_at", { ascending: false })
       .range(offset, offset + pageSize - 1);
 
-    if (status) query = query.eq("status", status);
-    if (searchQuery.trim())
-      query = query.ilike("store_name", `%${searchQuery}%`);
+    if (queryState.filterStatus)
+      query = query.eq("status", queryState.filterStatus);
+    if (debouncedSearch.trim())
+      query = query.ilike("store_name", `%${debouncedSearch}%`);
 
     const { data, error, count } = await query;
 
     if (error) {
-      setErrorMsg("Unable to fetch orders.");
+      setOrdersData({
+        orders: [],
+        totalPages: 1,
+        loading: false,
+        errorMsg: "Unable to fetch orders.",
+      });
     } else {
-      setOrders(data);
-      setTotalPages(Math.ceil(count / pageSize));
+      console.log(data);
+      setOrdersData({
+        orders: data,
+        totalPages: Math.ceil(count / pageSize) || 1,
+        loading: false,
+        errorMsg: "",
+      });
     }
-
-    setLoading(false);
-  };
+  }, [queryState.page, queryState.filterStatus, debouncedSearch]);
 
   useEffect(() => {
-    loadOrders(filterStatus);
-  }, [page, filterStatus]);
-
-  useEffect(() => {
-    if (searchQuery.length <= 0) {
-      loadOrders(filterStatus);
-    }
-  }, [searchQuery]);
+    loadOrders();
+  }, [loadOrders]);
 
   const handleSelectAllChange = (event) => {
     setSelectedOrders(
       event.target.checked
-        ? new Set(orders.map((order) => order.id))
+        ? new Set(ordersData.orders.map((order) => order.id))
         : new Set()
     );
   };
@@ -83,8 +104,8 @@ export default function ApproveOrder() {
 
       if (error) throw error;
 
-      loadOrders(filterStatus);
       setSelectedOrders(new Set());
+      loadOrders();
     } catch (error) {
       alert(`Error updating status: ${error.message}`);
     }
@@ -110,12 +131,14 @@ export default function ApproveOrder() {
   };
 
   const isAllSelected =
-    orders.length > 0 && orders.length === selectedOrders.size;
+    ordersData.orders.length > 0 &&
+    ordersData.orders.length === selectedOrders.size;
 
-  if (errorMsg) return <div className="p-4 text-red-500">{errorMsg}</div>;
+  if (ordersData.errorMsg)
+    return <div className="p-4 text-red-500">{ordersData.errorMsg}</div>;
 
   return (
-    <section className="p-4 flex flex-col">
+    <section className="p-4 flex flex-col h-full">
       <ApproveModal message={modalMessage} onConfirm={handleActionConfirm} />
       <header>
         <h1 className="text-2xl font-semibold">Approve Order</h1>
@@ -132,12 +155,18 @@ export default function ApproveOrder() {
                 type="text"
                 className="input input-xs join-item focus:outline-0"
                 placeholder="Search Store"
-                value={searchQuery}
-                onChange={(e) => setQuery(e.target.value)}
+                value={queryState.searchQuery}
+                onChange={(e) =>
+                  setQueryState((prev) => ({
+                    ...prev,
+                    searchQuery: e.target.value,
+                    page: 1,
+                  }))
+                }
               />
               <button
                 className="btn btn-primary btn-xs join-item"
-                onClick={(e) => loadOrders(filterStatus)}
+                onClick={() => loadOrders()}
               >
                 Search
               </button>
@@ -148,25 +177,28 @@ export default function ApproveOrder() {
                 className="btn btn-circle btn-xs"
                 type="reset"
                 value="×"
-                onClick={() => {
-                  setFilterStatus("");
-                  setQuery(""); // Clear search query when resetting filter
-                  setPage(1); // Reset to the first page when resetting filter
-                }}
+                onClick={() =>
+                  setQueryState({ searchQuery: "", filterStatus: "", page: 1 })
+                }
               />
               {["APPROVED", "PENDING", "CANCELLED"].map((status) => (
                 <input
                   key={status}
                   className={`btn btn-xs rounded-full ${
-                    status == filterStatus ? "btn-primary" : "btn-outline"
+                    status === queryState.filterStatus
+                      ? "btn-primary"
+                      : "btn-outline"
                   }`}
                   type="radio"
                   name="frameworks"
                   aria-label={`Show ${status}`}
-                  onClick={() => {
-                    setFilterStatus(status);
-                    setPage(1); // Reset page when changing filter
-                  }}
+                  onClick={() =>
+                    setQueryState((prev) => ({
+                      ...prev,
+                      filterStatus: status,
+                      page: 1,
+                    }))
+                  }
                 />
               ))}
             </form>
@@ -187,8 +219,8 @@ export default function ApproveOrder() {
         </div>
       </header>
 
-      <div className="overflow-x-auto">
-        {loading ? (
+      <div className="overflow-x-auto flex-1">
+        {ordersData.loading ? (
           <div className="w-full flex justify-center">
             <div className="loading loading-spinner"></div>
           </div>
@@ -206,6 +238,7 @@ export default function ApproveOrder() {
                 </th>
                 <th>ID</th>
                 <th>STORE</th>
+                <th>AGENT</th>
                 <th>LOCATION</th>
                 <th>CUSTOMER NAME</th>
                 <th>CONTACT PERSON</th>
@@ -217,14 +250,14 @@ export default function ApproveOrder() {
               </tr>
             </thead>
             <tbody>
-              {orders.length === 0 ? (
+              {ordersData.orders.length === 0 ? (
                 <tr>
                   <td colSpan="11" className="text-center text-gray-500">
                     No orders found
                   </td>
                 </tr>
               ) : (
-                orders.map((order) => (
+                ordersData.orders.map((order) => (
                   <tr key={order.id} className="hover:bg-base-300">
                     <td>
                       <input
@@ -236,6 +269,7 @@ export default function ApproveOrder() {
                     </td>
                     <th>{order.id}</th>
                     <td>{order.store_name}</td>
+                    <td>{order.raw_user_meta_data?.name}</td>
                     <td>{order.location}</td>
                     <td>{order.customer_name}</td>
                     <td>{order.contact_person}</td>
@@ -309,29 +343,44 @@ export default function ApproveOrder() {
       <div className="mt-4">
         <div className="join">
           <button
-            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            onClick={() =>
+              setQueryState((prev) => ({
+                ...prev,
+                page: Math.max(prev.page - 1, 1),
+              }))
+            }
             className="join-item btn btn-xs"
-            disabled={page === 1}
+            disabled={queryState.page === 1}
           >
             Previous
           </button>
 
-          {Array.from({ length: totalPages }, (_, index) => (
+          {Array.from({ length: ordersData.totalPages }, (_, index) => (
             <button
               key={index}
               className={`join-item btn btn-xs ${
-                page === index + 1 ? "btn-active" : ""
+                queryState.page === index + 1 ? "btn-active" : ""
               }`}
-              onClick={() => setPage(index + 1)}
+              onClick={() =>
+                setQueryState((prev) => ({ ...prev, page: index + 1 }))
+              }
             >
               {index + 1}
             </button>
           ))}
 
           <button
-            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+            onClick={() =>
+              setQueryState((prev) => ({
+                ...prev,
+                page: Math.min(prev.page + 1, ordersData.totalPages),
+              }))
+            }
             className="join-item btn btn-xs"
-            disabled={page === totalPages || totalPages === 0}
+            disabled={
+              queryState.page === ordersData.totalPages ||
+              ordersData.totalPages === 0
+            }
           >
             Next
           </button>
