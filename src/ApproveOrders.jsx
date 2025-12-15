@@ -5,6 +5,7 @@ import { supabase } from "./supabase";
 import { Check, Ellipsis, Eye, Hourglass, X } from "lucide-react";
 import ApproveModal from "./ApproveModal";
 import { Link } from "react-router-dom";
+import { convertTo12HourFormat } from "./utils/time";
 
 export default function ApproveOrder() {
   const [queryState, setQueryState] = useState({
@@ -274,7 +275,7 @@ export default function ApproveOrder() {
                     <td>{order.customer_name}</td>
                     <td>{order.contact_person}</td>
                     <td>{order.delivery_date}</td>
-                    <td>{order.receiving_time}</td>
+                    <td>{convertTo12HourFormat(order.receiving_time)}</td>
                     <td>
                       <p
                         className={`font-semibold ${
