@@ -238,38 +238,38 @@ export default function OrderDetails() {
           ) : (
             <div className="border rounded bg-white text-black p-2">
               {/* Header row */}
-              <div className="flex justify-between font-semibold border-b border-gray-300 pb-1 mb-1 text-gray-700">
-                <div className="flex-1">Item</div>
-                <div className="w-20 text-center">Option</div>
-                <div className="w-20 text-center">Qty</div>
-                <div className="w-20 text-center">Price</div>
-                <div className="w-24 text-right">Total</div>
-              </div>
+              <div className="overflow-x-auto">
+                <table className="table table-sm">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Option</th>
+                      <th>Qty</th>
+                      <th>Price</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {products.map((p, idx) => {
+                      const total =
+                        p.option === "bdl"
+                          ? p.qty * p.packPrice
+                          : p.qty * p.casePrice;
+                      return (
+                        <tr key={idx}>
+                          <td className="flex-1">{p.item}</td>
+                          <td>{p.option}</td>
+                          <td>{p.qty}</td>
+                          <td>
+                            {p.option === "bdl" ? p.packPrice : p.casePrice}
+                          </td>
 
-              {/* Product rows */}
-              <div className="divide-y divide-gray-200">
-                {products.map((p, idx) => {
-                  const total =
-                    p.option === "bdl"
-                      ? p.qty * p.packPrice
-                      : p.qty * p.casePrice;
-                  const bgClass = idx % 2 === 0 ? "bg-gray-50" : "bg-white"; // alternating row color
-                  return (
-                    <div
-                      key={idx}
-                      className={`flex justify-between py-1 ${bgClass}`}
-                    >
-                      <div className="flex-1">{p.item}</div>
-                      <div className="w-20 text-center">{p.option}</div>
-                      <div className="w-20 text-center">{p.qty}</div>
-                      <div className="w-20 text-center">
-                        {p.option === "bdl" ? p.packPrice : p.casePrice}
-                      </div>
-
-                      <div className="w-24 text-right">₱{total.toFixed(2)}</div>
-                    </div>
-                  );
-                })}
+                          <td>₱{total.toFixed(2)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
 
               {/* Grand Total */}
