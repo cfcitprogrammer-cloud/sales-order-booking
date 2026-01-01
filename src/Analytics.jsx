@@ -7,7 +7,7 @@ import "cally";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import useAuthStore from "./stores/authStore";
-import { useNavigat, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Analytics() {
   const [loading, setLoading] = useState(false);
