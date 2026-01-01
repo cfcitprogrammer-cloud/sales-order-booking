@@ -14,43 +14,51 @@ export default function Orders() {
   const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function loadOrders() {
-      const pageSize = 10;
-      const offset = (page - 1) * pageSize;
+  async function loadOrders(value = "") {
+    const pageSize = 10;
+    const offset = (page - 1) * pageSize;
 
-      setLoading(true);
+    setLoading(true);
 
-      let query = supabase
-        .from("customer_with_user")
-        .select("*", { count: "exact" })
-        .order("created_at", { ascending: false })
-        .range(offset, offset + pageSize - 1);
+    let query = supabase
+      .from("customer_with_user")
+      .select("*", { count: "exact" })
+      .order("created_at", { ascending: false })
+      .range(offset, offset + pageSize - 1);
 
-      if (searchQuery.trim() !== "") {
-        if (searchField === "id") {
-          query = query.eq(searchField, searchQuery);
-        } else {
-          query = query.ilike(`${searchField}::text`, `%${searchQuery}%`);
-        }
-      }
-
-      const { data, error, count } = await query;
-
-      if (error) {
-        console.error(error);
-        setErrorMsg("Unable to fetch orders.");
+    if (searchQuery.trim() !== "") {
+      if (searchField === "id") {
+        query = query.eq(searchField, searchQuery);
       } else {
-        console.log(data);
-        setOrders(data);
-        setTotalPages(Math.ceil(count / pageSize));
+        query = query.ilike(
+          `${searchField}::text`,
+          `%${value == "" ? value : searchQuery}%`
+        );
       }
-
-      setLoading(false);
     }
 
+    const { data, error, count } = await query;
+
+    if (error) {
+      console.error(error);
+      setErrorMsg("Unable to fetch orders.");
+    } else {
+      console.log(data);
+      setOrders(data);
+      setTotalPages(Math.ceil(count / pageSize));
+    }
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
     loadOrders();
-  }, [searchQuery, searchField, page]);
+  }, [searchField, page]);
+
+  function search(value) {
+    setSearchQuery(value);
+    loadOrders(value);
+  }
 
   if (loading) return <SkeletonLoading />;
   if (errorMsg) return <div className="p-4 text-red-500">{errorMsg}</div>;
@@ -68,7 +76,11 @@ export default function Orders() {
               className="input input-bordered w-full sm:w-auto"
               placeholder="Search orders..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) =>
+                e.target.value == ""
+                  ? search(e.target.value)
+                  : setSearchQuery(e.target.value)
+              }
             />
             <select
               className="select select-bordered"
@@ -80,6 +92,12 @@ export default function Orders() {
               <option value="id">Order ID</option>
               <option value="location">Location</option>
             </select>
+            <button
+              className="btn btn-primary"
+              onClick={() => search(searchQuery)}
+            >
+              Search
+            </button>
           </div>
         </div>
 

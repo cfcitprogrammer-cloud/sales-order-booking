@@ -7,7 +7,7 @@ import "cally";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import useAuthStore from "./stores/authStore";
-import { useNavigate } from "react-router-dom";
+import { useNavigat, useLocation } from "react-router-dom";
 
 export default function Analytics() {
   const [loading, setLoading] = useState(false);
@@ -23,6 +23,7 @@ export default function Analytics() {
 
   const { user } = useAuthStore();
   const navigate = useNavigate();
+  const location = useLocation();
 
   function updateDate(value) {
     setLoading(true);
@@ -137,7 +138,7 @@ export default function Analytics() {
             <div>
               <button
                 className="btn btn-sm btn-ghost btn-primary"
-                onClick={(e) => navigate(0)}
+                onClick={(e) => navigate("/analytics")}
               >
                 <RotateCw size={16} /> Refresh Data
               </button>
