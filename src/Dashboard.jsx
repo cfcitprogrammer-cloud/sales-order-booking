@@ -31,6 +31,7 @@ import { WaitApproval } from "./WaitApproval";
 
 import useAuthStore from "./stores/authStore";
 import PrivateRoute from "./PrivateRoute";
+import PrintPage from "./PrintPage";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -189,6 +190,7 @@ export default function Dashboard() {
             <Route path="/products" element={<Products />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/master/db/:id" element={<OrderDetails />} />
+            <Route path="/print/:id" element={<PrintPage />} />
 
             {["sales", "dev"].includes(role) && (
               <>

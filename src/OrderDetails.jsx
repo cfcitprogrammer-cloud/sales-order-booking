@@ -102,7 +102,16 @@ export default function OrderDetails() {
           ← Back
         </button>
 
-        <h1 className="text-3xl font-bold mb-4">Order Details</h1>
+        <header className="mb-4 flex flex-wrap justify-between items-center gap-2">
+          <h1 className="text-3xl font-bold mb-4">Order Details</h1>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate(`/print/${order.id}`)}
+          >
+            Print
+          </button>
+        </header>
 
         {/* Order Info */}
         <div className="border p-4 rounded shadow-sm bg-white text-black mb-6">
