@@ -97,14 +97,40 @@ export default function ApproveOrder() {
     if (selectedOrders.size <= 0)
       return alert("Please select at least one order.");
 
+    const approvedOrders = Array.from(selectedOrders);
+
+    setOrdersData((prev) => ({ ...prev, loading: true }));
+
     try {
+      // Update the status in Supabase for only approved orders
       const { error } = await supabase
         .from("customer_data")
         .update({ status: action })
-        .in("id", Array.from(selectedOrders));
+        .in("id", selectedOrders);
 
       if (error) throw error;
 
+      if (approvedOrders.length != 0 && action.toUpperCase() == "APPROVED") {
+        const response = await fetch(
+          "https://script.google.com/macros/s/AKfycbx0SkKZpHXI5HnYRScxr-4SoUEtM77aRLEx-bprPVcmVaRIxu5cMvVhol5fPXRtwJVi/exec",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/plain",
+            },
+            body: JSON.stringify({
+              orderIds: approvedOrders, // Send only approved orders to doPost
+            }),
+          }
+        );
+
+        const result = await response.json();
+        if (result.error) {
+          throw new Error(result.error);
+        }
+      }
+
+      // Send approved order IDs to doPost for email notifications
       setSelectedOrders(new Set());
       loadOrders();
     } catch (error) {

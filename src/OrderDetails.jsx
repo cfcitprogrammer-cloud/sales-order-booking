@@ -76,18 +76,42 @@ export default function OrderDetails() {
   }
 
   // Approve order function
+  // Approve order function
   async function handleApproveOrder() {
-    const { error } = await supabase
-      .from("customer_data")
-      .update({ status: "APPROVED" })
-      .eq("id", id);
+    try {
+      // Update the status of the order in Supabase
+      const { error } = await supabase
+        .from("customer_data")
+        .update({ status: "APPROVED" })
+        .eq("id", id);
 
-    if (error) {
+      if (error) {
+        console.error("Error approving order:", error);
+        setErrorMsg("Failed to approve order.");
+      } else {
+        // Update local state to reflect the approved status
+        setOrder((prevOrder) => ({ ...prevOrder, status: "APPROVED" }));
+        setShowApprovePrompt(false);
+
+        // Send the order ID to doPost for email notifications
+        await fetch(
+          "https://script.google.com/macros/s/AKfycbxJFpFWekGDjgCXsSyA6P5lB2xKzXw8up7LqXhyRIuM7xrq2x5Z7CNFqMiT6m3BaYPe/exec", // Your Google Apps Script URL
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/plain",
+            },
+            body: JSON.stringify({
+              orderIds: [id], // Send the single order ID to doPost for logistics email
+            }),
+          }
+        );
+
+        console.log("Logistics team notified about approved order.");
+      }
+    } catch (error) {
       console.error("Error approving order:", error);
       setErrorMsg("Failed to approve order.");
-    } else {
-      setOrder((prevOrder) => ({ ...prevOrder, status: "APPROVED" }));
-      setShowApprovePrompt(false);
     }
   }
 
