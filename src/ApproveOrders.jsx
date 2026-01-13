@@ -112,7 +112,7 @@ export default function ApproveOrder() {
 
       if (approvedOrders.length != 0 && action.toUpperCase() == "APPROVED") {
         const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbx0SkKZpHXI5HnYRScxr-4SoUEtM77aRLEx-bprPVcmVaRIxu5cMvVhol5fPXRtwJVi/exec",
+          "https://script.google.com/macros/s/AKfycbxJFpFWekGDjgCXsSyA6P5lB2xKzXw8up7LqXhyRIuM7xrq2x5Z7CNFqMiT6m3BaYPe/exec",
           {
             method: "POST",
             headers: {
