@@ -9,7 +9,7 @@ import {
   ReceiptText,
   Stamp,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Link,
   Routes,
@@ -17,6 +17,7 @@ import {
   Navigate,
   useLocation,
   useNavigate,
+  matchPath,
 } from "react-router-dom";
 import Products from "./Products";
 import Checkout from "./Checkout";
@@ -28,6 +29,8 @@ import Register from "./Register";
 import Analytics from "./Analytics";
 import ApproveOrder from "./ApproveOrders";
 import { WaitApproval } from "./WaitApproval";
+import RequestResetPassword from "./ReqResetPassword";
+import ResetPassword from "./ResetPassword";
 
 import useAuthStore from "./stores/authStore";
 import PrivateRoute from "./PrivateRoute";
@@ -56,9 +59,10 @@ export default function Dashboard() {
   }
 
   // Determine if the current route is login/register/verify
-  const isAuthPage = ["/login", "/register", "/verify"].includes(
-    location.pathname
-  );
+  const isAuthPage =
+    ["/login", "/register", "/verify", "/reset-password"].includes(
+      location.pathname,
+    ) || matchPath("/req-reset-password/:emailParam", location.pathname);
 
   return (
     <main
@@ -184,6 +188,11 @@ export default function Dashboard() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/verify" element={<WaitApproval />} />
+          <Route
+            path="/req-reset-password/:emailParam"
+            element={<RequestResetPassword />}
+          />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           {/* Private Routes */}
           <Route element={<PrivateRoute requireRole={true} />}>

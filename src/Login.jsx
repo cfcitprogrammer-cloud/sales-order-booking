@@ -70,6 +70,15 @@ export default function Login() {
           />
         </fieldset>
 
+        <div>
+          <Link
+            to={`/req-reset-password/${encodeURIComponent(email || "m@example.com")}`}
+            className="text-xs underline"
+          >
+            Forgot Password
+          </Link>
+        </div>
+
         <button
           className="btn btn-sm btn-primary w-full text-center"
           disabled={loading}
