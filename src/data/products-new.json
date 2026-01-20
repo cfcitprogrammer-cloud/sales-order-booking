@@ -37,6 +37,15 @@
   },
   {
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
+    "uid": "prod-010887865",
+    "item": "Hobe Special Bihon 454g x 6",
+    "bdl": "6",
+    "packsize": "454g",
+    "packPrize": 32,
+    "casePrice": 384
+  },
+  {
+    "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
     "uid": "prod-001",
     "item": "Hobe Special Bihon 454g x 24",
     "bdl": "24",
@@ -67,6 +76,15 @@
     "uid": "prod-004",
     "item": "Hobe Special Bihon 227g x 48",
     "bdl": "48",
+    "packsize": "227g",
+    "packPrize": 16.31,
+    "casePrice": 782.88
+  },
+  {
+    "id": "1w8635wtsBegZjxDAre_vAVkYuDIN3tWR",
+    "uid": "prod-0046427",
+    "item": "Hobe Special Bihon 227g x 12",
+    "bdl": "12",
     "packsize": "227g",
     "packPrize": 16.31,
     "casePrice": 782.88
