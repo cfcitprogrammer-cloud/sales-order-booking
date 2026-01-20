@@ -28,7 +28,18 @@
     "qty": 6,
     "packPrice": 85,
     "casePrice": 0,
-    "packSize": "900g",
+    "packSize": "800g",
+    "packing": "1",
+    "cartId": "6i20zsi64r5"
+  },
+  {
+    "id": "prod-1007",
+    "item": "RAPSA CANTON 1kg",
+    "option": "bdl",
+    "qty": 1,
+    "packPrice": 90,
+    "casePrice": 0,
+    "packSize": "1kg",
     "packing": "1",
     "cartId": "6i20zsi64r5"
   },
