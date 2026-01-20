@@ -27,13 +27,13 @@ export default function ApproveOrder() {
 
   // Debounced search
   const [debouncedSearch, setDebouncedSearch] = useState(
-    queryState.searchQuery
+    queryState.searchQuery,
   );
 
   useEffect(() => {
     const handler = setTimeout(
       () => setDebouncedSearch(queryState.searchQuery),
-      300
+      300,
     );
     return () => clearTimeout(handler);
   }, [queryState.searchQuery]);
@@ -81,7 +81,7 @@ export default function ApproveOrder() {
     setSelectedOrders(
       event.target.checked
         ? new Set(ordersData.orders.map((order) => order.id))
-        : new Set()
+        : new Set(),
     );
   };
 
@@ -121,7 +121,7 @@ export default function ApproveOrder() {
             body: JSON.stringify({
               orderIds: approvedOrders, // Send only approved orders to doPost
             }),
-          }
+          },
         );
 
         const result = await response.json();
@@ -308,8 +308,8 @@ export default function ApproveOrder() {
                           order.status === "APPROVED"
                             ? "text-success"
                             : order.status === "CANCELLED"
-                            ? "text-danger"
-                            : "text-warning"
+                              ? "text-danger"
+                              : "text-warning"
                         }`}
                       >
                         {order.status}
@@ -345,7 +345,7 @@ export default function ApproveOrder() {
                                   Set to {action}
                                 </button>
                               </li>
-                            )
+                            ),
                           )}
 
                           <li>
@@ -382,17 +382,17 @@ export default function ApproveOrder() {
             Previous
           </button>
 
-          {Array.from({ length: ordersData.totalPages }, (_, index) => (
+          {Array.from({ length: ordersData.totalPages }, (_, i) => (
             <button
-              key={index}
+              key={i}
               className={`join-item btn btn-xs ${
-                queryState.page === index + 1 ? "btn-active" : ""
+                queryState.page === i + 1 ? "btn-active" : ""
               }`}
               onClick={() =>
-                setQueryState((prev) => ({ ...prev, page: index + 1 }))
+                setQueryState((prev) => ({ ...prev, page: i + 1 }))
               }
             >
-              {index + 1}
+              {i + 1}
             </button>
           ))}
 
