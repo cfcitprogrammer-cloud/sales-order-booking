@@ -95,7 +95,7 @@ export default function OrderDetails() {
 
         // Send the order ID to doPost for email notifications
         await fetch(
-          "https://script.google.com/macros/s/AKfycbxJFpFWekGDjgCXsSyA6P5lB2xKzXw8up7LqXhyRIuM7xrq2x5Z7CNFqMiT6m3BaYPe/exec", // Your Google Apps Script URL
+          "https://script.google.com/macros/s/AKfycbybuyeN-XggeZVnaJGS7FyURwEgYbHLvovci2GgGPWyzppX-ZHlMahQAV4q4gkZMZMJ/exec", // Your Google Apps Script URL
           {
             method: "POST",
             headers: {
@@ -104,7 +104,7 @@ export default function OrderDetails() {
             body: JSON.stringify({
               orderIds: [id], // Send the single order ID to doPost for logistics email
             }),
-          }
+          },
         );
 
         console.log("Logistics team notified about approved order.");
@@ -146,8 +146,8 @@ export default function OrderDetails() {
                 order.status === "PENDING"
                   ? "bg-yellow-500"
                   : order.status === "APPROVED"
-                  ? "bg-green-500"
-                  : "bg-gray-500"
+                    ? "bg-green-500"
+                    : "bg-gray-500"
               }`}
             >
               {order.status}
