@@ -19,6 +19,15 @@
   },
   {
     "id": "",
+    "uid": "prod-567881881",
+    "item": "RAPSA CANTON 1kg",
+    "bdl": "1",
+    "packsize": "1kg",
+    "packPrize": 90,
+    "casePrice": 0
+  },
+  {
+    "id": "",
     "uid": "prod-567",
     "item": "RAPSA CANTON 900g",
     "bdl": "1",

@@ -5,6 +5,7 @@ import SkeletonLoading from "./SkeletonLoading";
 import { convertTo12HourFormat } from "./utils/time";
 import { usePaginationStore } from "./stores/paginate";
 import { Check } from "lucide-react";
+import useAuthStore from "./stores/authStore";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -17,6 +18,8 @@ export default function Orders() {
 
   // Zustand pagination state
   const { page, totalPages, setPage, setTotalPages } = usePaginationStore();
+
+  const { role } = useAuthStore();
 
   async function setDeliveredAt(orderId) {
     setLoading(true);
@@ -146,9 +149,12 @@ export default function Orders() {
                       <th>Delivered At</th>
                       <th>Status</th>
                       <th>Action</th>
-                      <th>
-                        <Check />
-                      </th>
+                      {role.includes("admin") ||
+                        (role.includes("dev") && (
+                          <th>
+                            <Check />
+                          </th>
+                        ))}
                     </tr>
                   </thead>
                   <tbody>
@@ -163,7 +169,6 @@ export default function Orders() {
                         </td>
                         <td>{convertTo12HourFormat(order.receiving_time)}</td>
                         <td>
-                          {" "}
                           {order.delivered_at
                             ? new Date(order.delivered_at).toLocaleString(
                                 "en-US",
@@ -198,14 +203,17 @@ export default function Orders() {
                             View
                           </button>
                         </td>
-                        <td>
-                          <button
-                            className="btn btn-secondary btn-xs"
-                            onClick={() => setDeliveredAt(order.id)}
-                          >
-                            <Check className="w-4 h-4" />
-                          </button>
-                        </td>
+                        {role.includes("admin") ||
+                          (role.includes("dev") && (
+                            <td>
+                              <button
+                                className="btn btn-secondary btn-xs"
+                                onClick={() => setDeliveredAt(order.id)}
+                              >
+                                <Check className="w-4 h-4" />
+                              </button>
+                            </td>
+                          ))}
                       </tr>
                     ))}
                   </tbody>
