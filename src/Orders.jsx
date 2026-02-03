@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SkeletonLoading from "./SkeletonLoading";
 import { convertTo12HourFormat } from "./utils/time";
 import { usePaginationStore } from "./stores/paginate";
+import { Check } from "lucide-react";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -16,6 +17,27 @@ export default function Orders() {
 
   // Zustand pagination state
   const { page, totalPages, setPage, setTotalPages } = usePaginationStore();
+
+  async function setDeliveredAt(orderId) {
+    setLoading(true);
+
+    if (!orderId) return;
+
+    const { data, error } = await supabase
+      .from("customer_data")
+      .update({
+        delivered_at: new Date().toISOString(), // or delivered_at if that's the column name
+      })
+      .eq("id", orderId);
+
+    setLoading(false);
+
+    if (error) {
+      alert("Error updating delivered time:", error);
+    } else {
+      alert("Updated Order");
+    }
+  }
 
   async function loadOrders(value = "") {
     const pageSize = 10;
@@ -112,20 +134,21 @@ export default function Orders() {
             {/* Table for large screens */}
             <div className="hidden lg:block">
               <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
+                <table className="table table-zebra w-full table-sm">
                   <thead>
                     <tr>
                       <th>Order ID</th>
                       <th>Store Name</th>
                       <th>Agent</th>
                       <th>Location</th>
-                      <th>Customer Name</th>
-                      <th>Contact Person</th>
                       <th>Delivery Date</th>
                       <th>Receiving Time</th>
-                      <th>Created At</th>
+                      <th>Delivered At</th>
                       <th>Status</th>
                       <th>Action</th>
+                      <th>
+                        <Check />
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -135,16 +158,28 @@ export default function Orders() {
                         <td>{order.store_name}</td>
                         <td>{order.raw_user_meta_data?.name}</td>
                         <td>{order.location}</td>
-                        <td>{order.customer_name}</td>
-                        <td>{order.contact_person}</td>
                         <td>
                           {new Date(order.delivery_date).toLocaleDateString()}
                         </td>
                         <td>{convertTo12HourFormat(order.receiving_time)}</td>
-                        <td>{new Date(order.created_at).toLocaleString()}</td>
+                        <td>
+                          {" "}
+                          {order.delivered_at
+                            ? new Date(order.delivered_at).toLocaleString(
+                                "en-US",
+                                {
+                                  year: "numeric",
+                                  month: "short",
+                                  day: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                },
+                              )
+                            : "Not delivered yet"}
+                        </td>
                         <td>
                           <span
-                            className={`badge ${
+                            className={`badge badge-sm ${
                               order.status === "PENDING"
                                 ? "badge-warning"
                                 : order.status === "APPROVED"
@@ -158,9 +193,17 @@ export default function Orders() {
                         <td>
                           <button
                             onClick={() => navigate(`/master/db/${order.id}`)}
-                            className="btn btn-primary"
+                            className="btn btn-primary btn-xs"
                           >
-                            View Details
+                            View
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-secondary btn-xs"
+                            onClick={() => setDeliveredAt(order.id)}
+                          >
+                            <Check className="w-4 h-4" />
                           </button>
                         </td>
                       </tr>
