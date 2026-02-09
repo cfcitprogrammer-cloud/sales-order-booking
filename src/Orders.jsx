@@ -222,8 +222,82 @@ export default function Orders() {
             </div>
 
             {/* List for small screens */}
-            <div className="lg:hidden">
-              {/* ...keep your existing list view code here... */}
+            {/* List for small screens */}
+            <div className="lg:hidden flex flex-col space-y-4">
+              {orders.map((order) => (
+                <div
+                  key={order.id}
+                  className="border rounded-lg p-4 shadow-sm bg-white flex flex-col space-y-2"
+                >
+                  <div className="flex justify-between items-center">
+                    <h2 className="font-semibold text-lg">
+                      Order ID: {order.id}
+                    </h2>
+                    <span
+                      className={`badge ${
+                        order.status === "PENDING"
+                          ? "badge-warning"
+                          : order.status === "APPROVED"
+                            ? "badge-success"
+                            : "badge-neutral"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
+                  </div>
+
+                  <p>
+                    <span className="font-semibold">Store:</span>{" "}
+                    {order.store_name}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Agent:</span>{" "}
+                    {order.raw_user_meta_data?.name || "-"}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Location:</span>{" "}
+                    {order.location}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Delivery Date:</span>{" "}
+                    {new Date(order.delivery_date).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Receiving Time:</span>{" "}
+                    {convertTo12HourFormat(order.receiving_time)}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Delivered At:</span>{" "}
+                    {order.delivered_at
+                      ? new Date(order.delivered_at).toLocaleString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : "Not delivered yet"}
+                  </p>
+
+                  <div className="flex justify-between items-center mt-2 space-x-2">
+                    <button
+                      onClick={() => navigate(`/master/db/${order.id}`)}
+                      className="btn btn-primary btn-sm flex-1"
+                    >
+                      View
+                    </button>
+
+                    {(role.includes("admin") || role.includes("dev")) && (
+                      <button
+                        className="btn btn-secondary btn-sm flex-1"
+                        onClick={() => setDeliveredAt(order.id)}
+                      >
+                        <Check className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </>
         )}
