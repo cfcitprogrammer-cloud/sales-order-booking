@@ -1,68 +1,74 @@
-// Products.tsx
-import { useState, useEffect } from "react";
-import { Plus } from "lucide-react";
-import useCartStore from "./stores/cartStore"; // Import the zustand store
+// Products.jsx
+import { useState, useEffect, useMemo, useCallback } from "react";
+import useCartStore from "./stores/cartStore";
 import useCustomerStore from "./stores/customerStore";
-import products from "./data/products-new.json"; // Your product list
-import { useNavigate } from "react-router-dom";
-import CustomerInfoModal from "./CustomerInfoModal"; // Import the modal for customer info
+import products from "./data/products-new.json";
+import CustomerInfoModal from "./CustomerInfoModal";
 import useAuthStore from "./stores/authStore";
+import ProductCard from "./ProductCard";
 
 export default function Products() {
-  const navigate = useNavigate();
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  // ✅ Only subscribe to cart length (prevents full page re-render)
+  const cartLength = useCartStore((state) => state.cart.length);
   const cart = useCartStore((state) => state.cart);
+
+  const clearCustomer = useCustomerStore((state) => state.clearCustomerInfo);
+
   const { role } = useAuthStore();
 
   const [qty, setQty] = useState({});
   const [option, setOption] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [openCartModal, setOpenCartModal] = useState(false);
-  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false); // State to manage customer info modal
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false);
 
-  // Filter products based on search query
-  const filteredProducts = products.filter((product) =>
-    product.item.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // ✅ Memoized filtering
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) =>
+      product.item.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+  }, [searchQuery]);
 
-  const handleQtyChange = (uid, value) => {
+  // ✅ Memoized handlers
+  const handleQtyChange = useCallback((uid, value) => {
     setQty((prev) => ({
       ...prev,
-      [uid]: value,
+      [uid]: Number(value),
     }));
-  };
+  }, []);
 
-  const handleOptionChange = (uid, value) => {
+  const handleOptionChange = useCallback((uid, value) => {
     setOption((prev) => ({
       ...prev,
       [uid]: value,
     }));
-  };
+  }, []);
 
-  const handleAdd = (product) => {
-    const selectedOption = option[product.uid] || "bdl";
-    const quantity = qty[product.uid] ? qty[product.uid] : 1;
+  const handleAdd = useCallback(
+    (product) => {
+      const selectedOption = option[product.uid] || "bdl";
+      const quantity = qty[product.uid] || 1;
 
-    addToCart({
-      id: product.uid,
-      item: product.item,
-      option: selectedOption,
-      qty: Number(quantity),
-      packPrice: product.packPrize,
-      casePrice: product.casePrice,
-      packSize: product.packsize,
-      packing: product.bdl,
-    });
+      addToCart({
+        id: product.uid,
+        item: product.item,
+        option: selectedOption,
+        qty: quantity,
+        packPrice: product.packPrize,
+        casePrice: product.casePrice,
+        packSize: product.packsize,
+        packing: product.bdl,
+      });
 
-    alert("Added to cart!");
-  };
-
-  const clearCustomer = useCustomerStore((state) => state.clearCustomerInfo);
-  const clearCart = useCartStore((state) => state.clearCart);
+      alert("Added to cart!");
+    },
+    [qty, option, addToCart],
+  );
 
   useEffect(() => {
-    clearCart();
     clearCustomer();
   }, []);
 
@@ -70,122 +76,50 @@ export default function Products() {
     <section className="px-4">
       <div className="max-w-screen-xl mx-auto space-y-4">
         <div className="sticky top-0 bg-white py-4 z-4 border-b border-gray-200 space-y-4">
-          <div
-            tabIndex={0}
-            className={`collapse collapse-sm collapse-arrow bg-base-100 border-base-300 border`}
-          >
-            <div className="collapse-title font-semibold">
-              <h1 className="text-2xl font-semibold">Products</h1>
-            </div>
-            <div className="collapse-content text-sm">
-              <div>
-                <input
-                  type="text"
-                  className="input input-sm w-full"
-                  placeholder="Search Product Title"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)} // Update search query
-                />
+          <h1 className="text-2xl font-semibold">Products</h1>
 
-                {/* View Cart Button */}
-                <div className="mt-4 flex flex-wrap gap-4 justify-start">
-                  <button
-                    className={`btn btn-secondary w-full sm:w-auto ${
-                      ["accounting", "admin"].includes(role)
-                        ? "btn-disabled"
-                        : ""
-                    }`}
-                    onClick={() => setIsCustomerModalOpen(true)}
-                    disabled={["accounting", "admin"].includes(role)}
-                  >
-                    Proceed to Checkout
-                  </button>
-                  <button
-                    className="btn btn-accent w-full sm:w-auto"
-                    onClick={() => setOpenCartModal(true)} // Open cart modal
-                  >
-                    View Cart ({cart.length})
-                  </button>
-                </div>
-              </div>
-            </div>
+          <input
+            type="text"
+            className="input input-sm w-full"
+            placeholder="Search Product Title"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <div className="mt-4 flex flex-wrap gap-4 justify-start">
+            <button
+              className={`btn btn-secondary ${
+                ["accounting", "admin"].includes(role) ? "btn-disabled" : ""
+              }`}
+              onClick={() => setIsCustomerModalOpen(true)}
+              disabled={["accounting", "admin"].includes(role)}
+            >
+              Proceed to Checkout
+            </button>
+
+            <button
+              className="btn btn-accent"
+              onClick={() => setOpenCartModal(true)}
+            >
+              View Cart ({cartLength})
+            </button>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-4 justify-center">
           {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => {
-              const selectedOption = option[product.uid] || "bdl";
-
-              return (
-                <div
-                  key={product.uid}
-                  className="card card-sm bg-base-100 w-64 shadow-sm"
-                >
-                  <figure>
-                    <iframe
-                      src={`https://drive.google.com/file/d/${product.id}/preview`}
-                      className="w-full h-64"
-                      allow="autoplay"
-                    ></iframe>
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">{product.item}</h2>
-                    <p className="text-sm text-gray-600">
-                      Bdl {product.bdl} pc/s | Size: {product.packsize}
-                    </p>
-                    <p className="text-sm">Bdl Price: ₱{product.packPrize}</p>
-                    <p className="text-sm">Case Price: ₱{product.casePrice}</p>
-
-                    {/* Select option and quantity inputs */}
-                    <div className="mt-2 flex flex-col gap-2">
-                      <div className="flex items-center gap-2">
-                        <span>Buy:</span>
-                        <select
-                          className="select select-sm"
-                          value={selectedOption}
-                          onChange={(e) =>
-                            handleOptionChange(product.uid, e.target.value)
-                          }
-                        >
-                          <option value="bdl">Bundle</option>
-                          <option value="case">Case</option>
-                        </select>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span>QTY:</span>
-                        <input
-                          type="number"
-                          min="1"
-                          defaultValue={""}
-                          className="input input-sm w-20"
-                          value={qty[product.uid]}
-                          onChange={(e) =>
-                            handleQtyChange(product.uid, e.target.value)
-                          }
-                        />
-                      </div>
-                    </div>
-
-                    {/* Add to Cart button */}
-                    <div className="card-actions justify-end">
-                      <button
-                        className={`btn btn-primary btn-sm w-full ${
-                          ["accounting", "admin"].includes(role)
-                            ? "btn-disabled"
-                            : ""
-                        }`}
-                        onClick={() => handleAdd(product)}
-                        disabled={["accounting", "admin"].includes(role)}
-                      >
-                        <Plus /> Add to cart
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
+            filteredProducts.map((product) => (
+              <ProductCard
+                key={product.uid}
+                product={product}
+                qty={qty}
+                option={option}
+                handleQtyChange={handleQtyChange}
+                handleOptionChange={handleOptionChange}
+                handleAdd={handleAdd}
+                role={role}
+              />
+            ))
           ) : (
             <p className="text-center text-gray-500">No products found.</p>
           )}
@@ -233,10 +167,9 @@ export default function Products() {
           </dialog>
         )}
 
-        {/* CUSTOMER INFO MODAL */}
         <CustomerInfoModal
-          isOpen={isCustomerModalOpen} // Pass the modal open state
-          onClose={() => setIsCustomerModalOpen(false)} // Close modal on close
+          isOpen={isCustomerModalOpen}
+          onClose={() => setIsCustomerModalOpen(false)}
         />
       </div>
     </section>
