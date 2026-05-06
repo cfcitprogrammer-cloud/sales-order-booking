@@ -95,7 +95,7 @@ export default function OrderDetails() {
 
         // Send the order ID to doPost for email notifications
         await fetch(
-          "https://script.google.com/macros/s/AKfycbzxEHRGMhvk_O5gzQHbmJCaMtRGgYKGpmGl9KgleZ8P2g4FkKQn55OUMEMcq01cag5a/exec", // Your Google Apps Script URL
+          "https://script.google.com/macros/s/AKfycbz65FZhY4OFYC_xeFYv3Dyj5jXieKGMZiw_wdI2qKOoj2lZuGBEwVeNh0VVybtEAoU4/exec", // Your Google Apps Script URL
           {
             method: "POST",
             headers: {
