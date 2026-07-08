@@ -23,10 +23,27 @@
     "item": "RAPSA CANTON 1kg",
     "bdl": "1",
     "packsize": "1kg",
-    "packPrize": 85,
+    "packPrize": 95,
     "casePrice": 0
   },
-
+  {
+    "id": "",
+    "uid": "prod-567881881800",
+    "item": "RAPSA CANTON 800g",
+    "bdl": "1",
+    "packsize": "800g",
+    "packPrize": 84,
+    "casePrice": 0
+  },
+  {
+    "id": "",
+    "uid": "prod-567881881454",
+    "item": "RAPSA CANTON 454g",
+    "bdl": "1",
+    "packsize": "454g",
+    "packPrize": 43,
+    "casePrice": 0
+  },
   {
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
     "uid": "prod-010",
