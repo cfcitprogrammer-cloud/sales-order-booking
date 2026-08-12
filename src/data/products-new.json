@@ -5,8 +5,8 @@
     "item": "Mini Do Choco 40g",
     "bdl": "50",
     "packsize": "40g",
-    "packPrize": 11,
-    "casePrice": 550
+    "packPrize": 12,
+    "casePrice": 600
   },
   {
     "id": "1dUBkONEa-UX18C-8y_r3LvmFltmKh8Hz",
@@ -14,8 +14,8 @@
     "item": "Mini Do Milk 40g",
     "bdl": "50",
     "packsize": "40g",
-    "packPrize": 11,
-    "casePrice": 550
+    "packPrize": 12,
+    "casePrice": 600
   },
   {
     "id": "",
@@ -23,7 +23,7 @@
     "item": "RAPSA CANTON 1kg",
     "bdl": "1",
     "packsize": "1kg",
-    "packPrize": 95,
+    "packPrize": 90,
     "casePrice": 0
   },
   {
@@ -50,8 +50,8 @@
     "item": "Hobe Special Bihon 454g x 12",
     "bdl": "12",
     "packsize": "454g",
-    "packPrize": 32,
-    "casePrice": 384
+    "packPrize": 35.3,
+    "casePrice": 424
   },
   {
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
@@ -113,8 +113,8 @@
     "item": "Hobe Special Bihon 227g x 24",
     "bdl": "24",
     "packsize": "227g",
-    "packPrize": 16,
-    "casePrice": 384
+    "packPrize": 17.6,
+    "casePrice": 424
   },
   {
     "id": "1zmx9Cl5YMK4Sko3X5cMIxmVLcpT2wkc-",
@@ -131,8 +131,8 @@
     "item": "Hobe Canton 227g x 12",
     "bdl": "12",
     "packsize": "227g",
-    "packPrize": 35,
-    "casePrice": 420
+    "packPrize": 37.5,
+    "casePrice": 450
   },
   {
     "id": "1nvK0zfskc6GAzzYcg3EI95UpL62WOu81",
@@ -142,6 +142,15 @@
     "packsize": "454g",
     "packPrize": 68,
     "casePrice": 2040
+  },
+  {
+    "id": "1nvK0zfskc6GAzzYcg3EI95UpL62WOu81",
+    "uid": "prod-007232389043",
+    "item": "Hobe Canton 454g x 12",
+    "bdl": "12",
+    "packsize": "454g",
+    "packPrize": 70,
+    "casePrice": 840
   },
   {
     "id": "1nvK0zfskc6GAzzYcg3EI95UpL62WOu81",
@@ -167,8 +176,8 @@
     "item": "Hobe Palabok 454g x 12",
     "bdl": "12",
     "packsize": "454g",
-    "packPrize": 33,
-    "casePrice": 396
+    "packPrize": 36.3,
+    "casePrice": 436
   },
   {
     "id": "138KDdGvnjiNZTOLLyKz_dWPhTLeTnG8N",
@@ -293,8 +302,8 @@
     "item": "Chickboy Sweet Corn 25g x 50",
     "bdl": "50",
     "packsize": "25g",
-    "packPrize": 5.6,
-    "casePrice": 280
+    "packPrize": 6.6,
+    "casePrice": 330
   },
   {
     "id": "",
@@ -302,17 +311,17 @@
     "item": "Chickboy Cheese 25g x 50",
     "bdl": "50",
     "packsize": "25g",
-    "packPrize": 5.6,
-    "casePrice": 280
+    "packPrize": 6.6,
+    "casePrice": 330
   },
   {
     "id": "",
     "uid": "prod-017",
-    "item": "Chickboy Texas Smoked BBQ 25g x 50",
+    "item": "Chickboy Texas Smoked BBQ 30g x 50",
     "bdl": "50",
     "packsize": "30g",
-    "packPrize": 5.6,
-    "casePrice": 280
+    "packPrize": 6.6,
+    "casePrice": 330
   },
   {
     "id": "",
@@ -320,8 +329,8 @@
     "item": "Chickboy California Crunch 30g x 50",
     "bdl": "50",
     "packsize": "30g",
-    "packPrize": 17.15,
-    "casePrice": 686
+    "packPrize": 6.6,
+    "casePrice": 330
   },
   {
     "id": "",
@@ -338,8 +347,8 @@
     "item": "Chickboy Sweet Corn 100g x 40",
     "bdl": "40",
     "packsize": "100g",
-    "packPrize": 17.15,
-    "casePrice": 686
+    "packPrize": 18.15,
+    "casePrice": 726
   },
   {
     "id": "1sho6vH53Qtcm6IBu9sYhEs-Qcfaz02Qu",
@@ -347,8 +356,8 @@
     "item": "Chickboy Cheese 100g x 40",
     "bdl": "40",
     "packsize": "100g",
-    "packPrize": 17.15,
-    "casePrice": 686
+    "packPrize": 18.15,
+    "casePrice": 726
   },
   {
     "id": "1dicnK8MNtfDz8-jYP9YSqX4q72GyggrL",
@@ -401,8 +410,8 @@
     "item": "Tochi Onion Rings 'Vegetable Snack' 35g (Sour Cream & Onion Flavor) x 30",
     "bdl": "30",
     "packsize": "35g",
-    "packPrize": 7.76,
-    "casePrice": 232.8
+    "packPrize": 8.7,
+    "casePrice": 262
   },
   {
     "id": "1PeSV4wncY9Ndha6EttYBBJG64P-tAcpo",
@@ -410,8 +419,8 @@
     "item": "Chickboy Fish Crackers 'Salt and Vinegar Flavor' 100g x 24",
     "bdl": "24",
     "packsize": "100g",
-    "packPrize": 19.55,
-    "casePrice": 469.2
+    "packPrize": 20.55,
+    "casePrice": 493
   },
   {
     "id": "17alMFcpDM1iJ9HsI2czaGrovv9BM2oEr",
@@ -419,8 +428,8 @@
     "item": "Chickboy Fish Crackers 'Hot & Spicy Flavor' 100g x 24",
     "bdl": "24",
     "packsize": "100g",
-    "packPrize": 19.55,
-    "casePrice": 469.2
+    "packPrize": 20.5,
+    "casePrice": 493
   },
   {
     "id": "",
@@ -428,8 +437,8 @@
     "item": "Chickboy Fish Crackers 'Salt and Vinegar Flavor' 25g x 30",
     "bdl": "30",
     "packsize": "25g",
-    "packPrize": 4.77,
-    "casePrice": 143.1
+    "packPrize": 5.7,
+    "casePrice": 173
   },
   {
     "id": "",
@@ -437,8 +446,8 @@
     "item": "Chickboy Fish Crackers 'Hot & Spicy Flavor' 25g x 30",
     "bdl": "30",
     "packsize": "25g",
-    "packPrize": 4.77,
-    "casePrice": 143.1
+    "packPrize": 5.7,
+    "casePrice": 173
   },
   {
     "id": "1QtFA-PaaOFYsNqRPCsnDnXRZLqoRGvrj",
@@ -446,8 +455,8 @@
     "item": "Chickboy Shing-A-Ling 'Hot & Spicy Flavor' 65g x 24",
     "bdl": "24",
     "packsize": "65g",
-    "packPrize": 14.5,
-    "casePrice": 348
+    "packPrize": 15.5,
+    "casePrice": 372
   },
   {
     "id": "15HoQ5xYcLdlLYMo4c_5aJPQf3jS_GX2S",
