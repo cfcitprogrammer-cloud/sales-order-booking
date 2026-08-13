@@ -59,8 +59,8 @@
     "item": "Hobe Special Bihon 454g x 6",
     "bdl": "6",
     "packsize": "454g",
-    "packPrize": 32,
-    "casePrice": 384
+    "packPrize": 35.3,
+    "casePrice": 211.8
   },
   {
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
@@ -68,8 +68,8 @@
     "item": "Hobe Special Bihon 454g x 24",
     "bdl": "24",
     "packsize": "454g",
-    "packPrize": 16,
-    "casePrice": 384
+    "packPrize": 35.3,
+    "casePrice": 847.2
   },
   {
     "id": "1yi1EjvBd3Vr3zHos0rtCGIytmSvnEIr7",
@@ -77,8 +77,8 @@
     "item": "Hobe Special Bihon 454g x 30",
     "bdl": "30",
     "packsize": "454g",
-    "packPrize": 33.62,
-    "casePrice": 1008.6
+    "packPrize": 35.3,
+    "casePrice": 1059
   },
   {
     "id": "",
@@ -95,8 +95,8 @@
     "item": "Hobe Special Bihon 227g x 48",
     "bdl": "48",
     "packsize": "227g",
-    "packPrize": 16.31,
-    "casePrice": 782.88
+    "packPrize": 17.6,
+    "casePrice": 844.8
   },
   {
     "id": "1w8635wtsBegZjxDAre_vAVkYuDIN3tWR",
@@ -104,8 +104,8 @@
     "item": "Hobe Special Bihon 227g x 12",
     "bdl": "12",
     "packsize": "227g",
-    "packPrize": 16.31,
-    "casePrice": 782.88
+    "packPrize": 17.6,
+    "casePrice": 211.2
   },
   {
     "id": "1w8635wtsBegZjxDAre_vAVkYuDIN3tWR",
@@ -167,8 +167,8 @@
     "item": "Hobe Palabok 454g x 24",
     "bdl": "24",
     "packsize": "454g",
-    "packPrize": 33.95,
-    "casePrice": 814.8
+    "packPrize": 36.3,
+    "casePrice": 871.2
   },
   {
     "id": "1swEIrs5H3lzZYlisvXyn6IekcsnAOOgx",
@@ -230,8 +230,17 @@
     "item": "Hobe Egg Noodles 400g x 30",
     "bdl": "30",
     "packsize": "400g",
-    "packPrize": 75,
-    "casePrice": 2250
+    "packPrize": 38.5,
+    "casePrice": 1155
+  },
+  {
+    "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
+    "uid": "prod-011",
+    "item": "Hobe Egg Noodles 400g x 12",
+    "bdl": "12",
+    "packsize": "400g",
+    "packPrize": 38.5,
+    "casePrice": 462
   },
   {
     "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
@@ -239,17 +248,17 @@
     "item": "Hobe Egg Noodles 400g x 10",
     "bdl": "10",
     "packsize": "400g",
-    "packPrize": 65,
-    "casePrice": 650
+    "packPrize": 38.5,
+    "casePrice": 385
   },
   {
     "id": "1nhVMANpo1GZV1drEPqRPgwTDEY9uN7En",
     "uid": "prod-111",
     "item": "Hobe Egg Noodles 400g x 20",
-    "bdl": "30",
+    "bdl": "20",
     "packsize": "400g",
-    "packPrize": 75,
-    "casePrice": 1500
+    "packPrize": 38.5,
+    "casePrice": 770
   },
   {
     "id": "1S5gsDhx5GONCEwYddEmq74q6nLLsGc2U",
