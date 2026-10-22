@@ -162,6 +162,15 @@
     "casePrice": 700
   },
   {
+    "id": "",
+    "uid": "prod-0102426",
+    "item": "Assorted Bundle (Golden Me Extra Special 454g x 5, Hobe Special Bihon 454g x 5, Hobe Palabok 454g x 2)",
+    "bdl": "1",
+    "packsize": "454g",
+    "packPrize": 425.9,
+    "casePrice": 425.9
+  },
+  {
     "id": "1swEIrs5H3lzZYlisvXyn6IekcsnAOOgx",
     "uid": "prod-008",
     "item": "Hobe Palabok 454g x 24",
@@ -263,7 +272,7 @@
   {
     "id": "1S5gsDhx5GONCEwYddEmq74q6nLLsGc2U",
     "uid": "prod-0121",
-    "item": "Golden Me Extra Special 454g x 12",
+    "item": "Golden Me Extra Special 454g x  12",
     "bdl": "12",
     "packsize": "454g",
     "packPrize": 35.33,
